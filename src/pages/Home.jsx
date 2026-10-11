@@ -62,10 +62,10 @@ export default function Home() {
               <span className="pill">profile</span>
             </div>
             <div className="forum-user">
-              <div className="avatar">P</div>
+              <div className="avatar">T</div>
               <div>
                 <p className="forum-name">
-                  pollis
+                  talk-builder
                   <SealCheck className="verified" weight="fill" size={18} />
                 </p>
                 <p className="mono did-line">did:ckb:…a7f3</p>
@@ -86,6 +86,19 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+
+      <div className="callout signal-callout home-signal">
+        <h3>Why reviewers asked for this</h3>
+        <p>{PROPOSAL.committeeSignal}</p>
+        <div className="hero-cta" style={{ marginBottom: 0 }}>
+          <Link href="/ecosystem" className="btn btn-secondary btn-sm">
+            Ecosystem map
+          </Link>
+          <Link href="/verify" className="btn btn-ghost btn-sm">
+            How to verify
+          </Link>
+        </div>
+      </div>
 
       <section className="section">
         <div className="section-head">

@@ -8,9 +8,8 @@ export default function How() {
         <p className="eyebrow">Product flow</p>
         <h1>How TalkDID works</h1>
         <p className="lede">
-          Four steps from a normal Talk account to a cryptographically bound{" "}
-          <em>did:ckb</em>. No new forum — the plugin lives where people already
-          post.
+          From a normal Talk account to a cryptographically bound <em>did:ckb</em>{" "}
+          — plugin for trust, Theme Component for the badge. No new forum.
         </p>
       </header>
 

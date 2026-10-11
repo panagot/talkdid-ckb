@@ -7,8 +7,9 @@ export default function Architecture() {
         <p className="eyebrow">System</p>
         <h1>Architecture</h1>
         <p className="lede">
-          Thin plugin at the edge of Discourse; cryptographic truth from
-          did:ckb via CCC signatures. No custom L1 work.
+          Rails plugin owns challenge / verify / storage. Theme Component renders
+          the badge. Cryptographic truth from did:ckb (WIP-01) via CCC — no custom
+          L1 work.
         </p>
       </header>
 
@@ -91,7 +92,8 @@ export default function Architecture() {
         <h3>Trust boundary</h3>
         <p>
           Discourse remains the session authority for posting. TalkDID only
-          asserts “this Talk user controls this did:ckb.” Mods still moderate
+          asserts “this Talk user controlled this did:ckb at link time.” It does
+          not grant DAO votes or replace Metaforo Web5. Mods still moderate
           content; the badge reduces impersonation and screenshot theater.
         </p>
       </div>

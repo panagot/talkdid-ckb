@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Check, Copy } from "@phosphor-icons/react";
-import { CONTACT, MILESTONES, PROPOSAL, SUBMIT_FIELDS } from "../data/grant.js";
+import { BUILDER, MILESTONES, PROPOSAL, SUBMIT_FIELDS } from "../data/grant.js";
 
 function CopyBlock({ label, value }) {
   const [ok, setOk] = useState(false);
@@ -97,10 +97,8 @@ export default function Submit() {
           <strong>{PROPOSAL.track}</strong>
         </div>
         <div>
-          <span className="muted">Contact</span>
-          <strong>
-            {CONTACT.name} · {CONTACT.email}
-          </strong>
+          <span className="muted">Team</span>
+          <strong>{BUILDER.label}</strong>
         </div>
       </div>
 

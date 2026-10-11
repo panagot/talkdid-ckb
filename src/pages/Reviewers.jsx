@@ -1,30 +1,42 @@
 import { Link } from "wouter";
-import { CheckSquare, Eye, GitBranch, SealCheck } from "@phosphor-icons/react";
+import {
+  CheckSquare,
+  Eye,
+  GitBranch,
+  GlobeHemisphereWest,
+  SealCheck,
+} from "@phosphor-icons/react";
 import { MILESTONES, PROPOSAL } from "../data/grant.js";
 
 const CHECKS = [
   {
     icon: Eye,
     title: "Click the demo",
-    body: "Walk the challenge → sign → badge flow. Confirm UX is clear without a real wallet.",
+    body: "Link flow, post stream badges, and mod view — no real wallet required.",
     href: "/demo",
+  },
+  {
+    icon: GlobeHemisphereWest,
+    title: "Ecosystem map",
+    body: "Confirm non-overlap with Metaforo/DAO Web5 and Vellum; committee signal cited.",
+    href: "/ecosystem",
+  },
+  {
+    icon: SealCheck,
+    title: "How to verify",
+    body: "Honest claims checklist — what this kit proves vs what M1/M2 must ship.",
+    href: "/verify",
   },
   {
     icon: GitBranch,
     title: "Read milestones",
-    body: "M1 plugin + verify path; M2 badge + staging + OSS. Total ask matches Spark scale.",
+    body: "M1 verify path + tests; M2 badge + staging + OSS. Ask matches Spark scale.",
     href: "/submit",
-  },
-  {
-    icon: SealCheck,
-    title: "Check Spark fit",
-    body: "Talk-native, app-layer, did:ckb useful on the forum Spark itself uses.",
-    href: "/compare",
   },
   {
     icon: CheckSquare,
     title: "Risks page",
-    body: "Install gate, DID edge cases, opt-in — each with a mitigation, not hand-waving.",
+    body: "Install gate, DID edge cases, opt-in, scope — each mitigated.",
     href: "/risks",
   },
 ];

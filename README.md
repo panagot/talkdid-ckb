@@ -17,8 +17,9 @@ TalkDID makes CKB’s identity stack useful where the community already gathers:
 | --- | --- |
 | **Spark reviewers** | [/#/reviewers](https://talkdid-ckb-j9kz.vercel.app/#/reviewers) |
 | **Interactive mock** | [/#/demo](https://talkdid-ckb-j9kz.vercel.app/#/demo) |
+| **Ecosystem map** | [/#/ecosystem](https://talkdid-ckb-j9kz.vercel.app/#/ecosystem) |
+| **How to verify** | [/#/verify](https://talkdid-ckb-j9kz.vercel.app/#/verify) |
 | **Submit paste kit** | [/#/submit](https://talkdid-ckb-j9kz.vercel.app/#/submit) |
-| **Architecture** | [/#/architecture](https://talkdid-ckb-j9kz.vercel.app/#/architecture) |
 | **Risks** | [/#/risks](https://talkdid-ckb-j9kz.vercel.app/#/risks) |
 
 **Repo (private):** [github.com/panagot/talkdid-ckb](https://github.com/panagot/talkdid-ckb)
@@ -66,11 +67,13 @@ npm run build && npm run preview
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Hero, milestones, stack |
+| `/` | Hero, committee signal, milestones, stack |
 | `/how` | End-user link flow |
-| `/demo` | Interactive verification mock |
-| `/architecture` | Nodes, message path, trust boundary |
+| `/demo` | Link flow · post stream · mod view |
+| `/ecosystem` | Talk categories + non-overlap map |
+| `/architecture` | Plugin + Theme Component + did:ckb |
 | `/compare` | TalkDID vs wallet-only vs new forum |
+| `/verify` | Honest claims + FAQ |
 | `/reviewers` | Evaluation checklist |
 | `/method` | Principles + week sketch |
 | `/submit` | Paste-ready proposal fields |
@@ -103,11 +106,7 @@ Full acceptance lists live in-app under **Submit** and **Reviewers**.
 
 ## Contact
 
-| | |
-| --- | --- |
-| **Builder** | POLLIS |
-| **Email** | panagot@gmail.com |
-| **Telegram / X** | @panagot |
+Builder contact is provided on the Spark / Eco Fund application form — not in this public kit chrome. Repo maintainers: see GitHub.
 
 ---
 
@@ -115,4 +114,4 @@ Full acceptance lists live in-app under **Submit** and **Reviewers**.
 
 MIT — proposal kit. The Discourse plugin will ship MIT under the funded repository.
 
-*Not affiliated with the Nervos Foundation. Spark / Eco Fund evaluation material.*
+*Independent Spark proposal material. Not affiliated with the Nervos Foundation or CKB Eco Fund.*

@@ -6,16 +6,17 @@ import {
   ArrowSquareOut,
   CirclesThreePlus,
 } from "@phosphor-icons/react";
-import { CONTACT, LINKS, PROPOSAL } from "../data/grant.js";
+import { LINKS, PROPOSAL } from "../data/grant.js";
+import HelpFab from "./HelpFab.jsx";
 
 const NAV = [
   { href: "/", label: "Home" },
-  { href: "/how", label: "How" },
   { href: "/demo", label: "Demo" },
+  { href: "/ecosystem", label: "Ecosystem" },
   { href: "/architecture", label: "Architecture" },
   { href: "/compare", label: "Compare" },
+  { href: "/verify", label: "Verify" },
   { href: "/reviewers", label: "Reviewers" },
-  { href: "/method", label: "Method" },
   { href: "/submit", label: "Submit" },
   { href: "/risks", label: "Risks" },
 ];
@@ -109,21 +110,27 @@ export default function Shell({ children }) {
             <p className="muted">{PROPOSAL.oneLiner}</p>
           </div>
           <div>
-            <p className="footer-label">Proposal</p>
+            <p className="footer-label">Kit</p>
             <ul>
+              <li>
+                <Link href="/demo">Interactive demo</Link>
+              </li>
+              <li>
+                <Link href="/verify">How to verify</Link>
+              </li>
               <li>
                 <Link href="/submit">Spark submit kit</Link>
               </li>
               <li>
-                <Link href="/reviewers">For reviewers</Link>
+                <Link href="/how">How it works</Link>
               </li>
               <li>
-                <Link href="/risks">Risks & mitigations</Link>
+                <Link href="/method">Build method</Link>
               </li>
             </ul>
           </div>
           <div>
-            <p className="footer-label">References</p>
+            <p className="footer-label">Ecosystem</p>
             <ul>
               <li>
                 <a href={LINKS.talk} target="_blank" rel="noreferrer">
@@ -131,33 +138,54 @@ export default function Shell({ children }) {
                 </a>
               </li>
               <li>
-                <a href={LINKS.ccc} target="_blank" rel="noreferrer">
-                  CCC
+                <a href={LINKS.cccDocs} target="_blank" rel="noreferrer">
+                  CCC docs
+                </a>
+              </li>
+              <li>
+                <a href={LINKS.didWip} target="_blank" rel="noreferrer">
+                  did:ckb WIP-01
                 </a>
               </li>
               <li>
                 <a href={LINKS.sparkBoard} target="_blank" rel="noreferrer">
-                  Talk Spark board
+                  Talk Spark
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <p className="footer-label">Contact</p>
+            <p className="footer-label">Project</p>
             <ul>
-              <li>{CONTACT.name}</li>
               <li>
-                <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+                <a href={LINKS.demo} target="_blank" rel="noreferrer">
+                  Live demo
+                </a>
               </li>
-              <li>{CONTACT.telegram}</li>
+              <li>
+                <a href={LINKS.repo} target="_blank" rel="noreferrer">
+                  GitHub (private)
+                </a>
+              </li>
+              <li>License · MIT</li>
+              <li>
+                <Link href="/risks">Risks & mitigations</Link>
+              </li>
             </ul>
           </div>
         </div>
         <div className="footer-bar">
-          <span>CKB Eco Fund · Spark demo kit · not affiliated with Nervos Foundation</span>
-          <span>Ask {PROPOSAL.amountAsk} · {PROPOSAL.track}</span>
+          <span>
+            Independent Spark proposal kit · not affiliated with Nervos Foundation
+            or CKB Eco Fund
+          </span>
+          <span>
+            Ask {PROPOSAL.amountAsk} · {PROPOSAL.track}
+          </span>
         </div>
       </footer>
+
+      <HelpFab />
     </div>
   );
 }
