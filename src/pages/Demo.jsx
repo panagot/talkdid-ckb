@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CheckCircle,
   CircleNotch,
@@ -7,9 +7,8 @@ import {
   Wallet,
   WarningCircle,
 } from "@phosphor-icons/react";
+import LiveLink from "../components/LiveLink.jsx";
 import { DEMO_POSTS } from "../data/grant.js";
-
-const LiveLink = lazy(() => import("../components/LiveLink.jsx"));
 
 const STEPS = ["idle", "connect", "challenge", "sign", "verify", "done"];
 const TABS = [
@@ -142,18 +141,7 @@ export default function Demo() {
         ))}
       </div>
 
-      {tab === "live" && (
-        <Suspense
-          fallback={
-            <div className="demo-panel center">
-              <CircleNotch className="spin" size={28} />
-              <p className="muted">Loading CCC live path…</p>
-            </div>
-          }
-        >
-          <LiveLink />
-        </Suspense>
-      )}
+      {tab === "live" && <LiveLink />}
 
       {tab === "link" && (
         <div className="demo-layout">

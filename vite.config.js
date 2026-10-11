@@ -46,6 +46,9 @@ export default defineConfig({
     port: 5303,
     host: true,
   },
+  resolve: {
+    dedupe: ["react", "react-dom", "@ckb-ccc/connector-react"],
+  },
   optimizeDeps: {
     include: ["@ckb-ccc/connector-react", "@ckb-ccc/ccc", "@ckb-ccc/did-ckb"],
   },
