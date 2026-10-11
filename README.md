@@ -11,15 +11,15 @@ TalkDID makes CKB’s identity stack useful where the community already gathers:
 
 ## Live demo
 
-**Production:** [https://talkdid-ckb.vercel.app/](https://talkdid-ckb.vercel.app/)
+**Production:** [https://talkdid-ckb-j9kz.vercel.app/](https://talkdid-ckb-j9kz.vercel.app/)
 
 | Audience | Deep link |
 | --- | --- |
-| **Spark reviewers** | [/#/reviewers](https://talkdid-ckb.vercel.app/#/reviewers) |
-| **Interactive mock** | [/#/demo](https://talkdid-ckb.vercel.app/#/demo) |
-| **Submit paste kit** | [/#/submit](https://talkdid-ckb.vercel.app/#/submit) |
-| **Architecture** | [/#/architecture](https://talkdid-ckb.vercel.app/#/architecture) |
-| **Risks** | [/#/risks](https://talkdid-ckb.vercel.app/#/risks) |
+| **Spark reviewers** | [/#/reviewers](https://talkdid-ckb-j9kz.vercel.app/#/reviewers) |
+| **Interactive mock** | [/#/demo](https://talkdid-ckb-j9kz.vercel.app/#/demo) |
+| **Submit paste kit** | [/#/submit](https://talkdid-ckb-j9kz.vercel.app/#/submit) |
+| **Architecture** | [/#/architecture](https://talkdid-ckb-j9kz.vercel.app/#/architecture) |
+| **Risks** | [/#/risks](https://talkdid-ckb-j9kz.vercel.app/#/risks) |
 
 **Repo (private):** [github.com/panagot/talkdid-ckb](https://github.com/panagot/talkdid-ckb)
 

@@ -13,7 +13,7 @@ export const LINKS = {
   ccc: "https://github.com/ckb-js/ccc",
   fiber: "https://www.fiber.network",
   sparkBoard: "https://talk.nervos.org/c/eco-fund/spark",
-  demo: "https://talkdid-ckb.vercel.app/",
+  demo: "https://talkdid-ckb-j9kz.vercel.app/",
   repo: "https://github.com/panagot/talkdid-ckb",
 };
 
