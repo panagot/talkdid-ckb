@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import {
   CheckCircle,
   CircleNotch,
@@ -9,9 +9,12 @@ import {
 } from "@phosphor-icons/react";
 import { DEMO_POSTS } from "../data/grant.js";
 
+const LiveLink = lazy(() => import("../components/LiveLink.jsx"));
+
 const STEPS = ["idle", "connect", "challenge", "sign", "verify", "done"];
 const TABS = [
-  { id: "link", label: "Link flow" },
+  { id: "live", label: "Live CCC" },
+  { id: "link", label: "Mock flow" },
   { id: "stream", label: "Post stream" },
   { id: "mod", label: "Mod view" },
 ];
@@ -30,7 +33,7 @@ function validUsername(name) {
 }
 
 export default function Demo() {
-  const [tab, setTab] = useState("link");
+  const [tab, setTab] = useState("live");
   const [username, setUsername] = useState("talk-builder");
   const [step, setStep] = useState("idle");
   const [busy, setBusy] = useState(false);
@@ -119,8 +122,8 @@ export default function Demo() {
         <p className="eyebrow">Interactive mock</p>
         <h1>TalkDID demo</h1>
         <p className="lede">
-          Three reviewer views: the CCC link flow, how badges appear in a Talk-like
-          stream, and what mods gain. No real wallet or Talk API.
+          Start with <strong>Live CCC</strong> (real wallet + server verify + DID
+          resolve). Mock / stream / mod tabs stay available for offline review.
         </p>
       </header>
 
@@ -138,6 +141,19 @@ export default function Demo() {
           </button>
         ))}
       </div>
+
+      {tab === "live" && (
+        <Suspense
+          fallback={
+            <div className="demo-panel center">
+              <CircleNotch className="spin" size={28} />
+              <p className="muted">Loading CCC live path…</p>
+            </div>
+          }
+        >
+          <LiveLink />
+        </Suspense>
+      )}
 
       {tab === "link" && (
         <div className="demo-layout">

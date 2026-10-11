@@ -38,7 +38,7 @@ export const PROPOSAL = {
   committeeSignal:
     "On a prior Spark DID proposal, the committee suggested Discourse + CKB DID integration as a higher-adoption, ecosystem-aligned direction.",
   demoNote:
-    "This site is a product mock + grant kit. It does not modify production talk.nervos.org. The funded artifact is the installable plugin + staging Discourse.",
+    "This site includes a Live CCC path (real wallet sign + server verify + did:ckb resolve on public RPC). It does not modify production talk.nervos.org. The funded artifact remains the installable Discourse plugin + staging forum.",
 };
 
 export const MILESTONES = [

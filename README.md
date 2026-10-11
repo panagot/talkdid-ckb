@@ -81,9 +81,28 @@ npm run build && npm run preview
 
 ---
 
+## Live CCC path
+
+Demo → **Live CCC** tab:
+
+1. Connect a wallet via **@ckb-ccc/connector-react** (Neuron, JoyID, …)
+2. `POST /api/challenge` — HMAC-signed nonce (server)
+3. Wallet `signMessage` on that challenge
+4. `POST /api/verify` — `Signer.verifyMessage` + `listDidCkbsByLock` on public CKB RPC
+5. Ephemeral bind store (`/api/binds`) for the demo session
+
+Prefer **testnet**. Mainnet works the same once you select it. Creating a `did:ckb` cell (if you have none) still uses ecosystem DID tooling — this kit proves wallet ownership even without a DID cell.
+
+Env (optional on Vercel): `TALKDID_CHALLENGE_SECRET` for production HMAC keys.
+
+```bash
+npm run dev   # Vite + /api middleware
+```
+
 ## Stack (this site)
 
-- Vite 8 · React 19 · wouter (hash) · Phosphor · Framer Motion  
+- Vite 8 · React 19 · wouter (hash) · Phosphor · Framer Motion · CCC  
+- API: Vercel serverless `/api/*` (+ Vite middleware in local dev)  
 - Deploy: Vercel (`vercel.json` SPA rewrite; hash routing needs no server routes)
 
 ## Stack (funded plugin)
