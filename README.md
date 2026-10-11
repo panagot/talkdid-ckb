@@ -11,15 +11,17 @@ TalkDID makes CKB’s identity stack useful where the community already gathers:
 
 ## Live demo
 
-**Production:** _(deploying to Vercel — URL will be added here)_
+**Production:** [https://talkdid-ckb.vercel.app/](https://talkdid-ckb.vercel.app/)
 
 | Audience | Deep link |
 | --- | --- |
-| **Spark reviewers** | `/#/reviewers` |
-| **Interactive mock** | `/#/demo` |
-| **Submit paste kit** | `/#/submit` |
-| **Architecture** | `/#/architecture` |
-| **Risks** | `/#/risks` |
+| **Spark reviewers** | [/#/reviewers](https://talkdid-ckb.vercel.app/#/reviewers) |
+| **Interactive mock** | [/#/demo](https://talkdid-ckb.vercel.app/#/demo) |
+| **Submit paste kit** | [/#/submit](https://talkdid-ckb.vercel.app/#/submit) |
+| **Architecture** | [/#/architecture](https://talkdid-ckb.vercel.app/#/architecture) |
+| **Risks** | [/#/risks](https://talkdid-ckb.vercel.app/#/risks) |
+
+**Repo (private):** [github.com/panagot/talkdid-ckb](https://github.com/panagot/talkdid-ckb)
 
 Local:
 

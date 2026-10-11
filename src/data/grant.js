@@ -13,6 +13,8 @@ export const LINKS = {
   ccc: "https://github.com/ckb-js/ccc",
   fiber: "https://www.fiber.network",
   sparkBoard: "https://talk.nervos.org/c/eco-fund/spark",
+  demo: "https://talkdid-ckb.vercel.app/",
+  repo: "https://github.com/panagot/talkdid-ckb",
 };
 
 export const PROPOSAL = {
@@ -177,6 +179,6 @@ export const SUBMIT_FIELDS = {
   ).join("\n\n"),
   budget: `${PROPOSAL.amountAsk} total — M1 $750 / M2 $750`,
   team: `${CONTACT.name} — builder; contact ${CONTACT.email} · ${CONTACT.telegram}`,
-  links: `Demo site (this kit) · Repo (to be linked on Spark post) · ${LINKS.talk}`,
+  links: `Demo: ${LINKS.demo} · Repo: ${LINKS.repo} · Talk: ${LINKS.talk}`,
   whyNervos: PROPOSAL.whySpark,
 };
