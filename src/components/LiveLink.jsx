@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ccc } from "@ckb-ccc/connector-react";
 import {
   CheckCircle,
@@ -7,6 +7,7 @@ import {
   WarningCircle,
   Wallet,
 } from "@phosphor-icons/react";
+import DeskMetrics from "./DeskMetrics.jsx";
 import { fetchBind, requestChallenge, verifyChallenge } from "../lib/api.js";
 
 function validUsername(name) {
@@ -144,8 +145,41 @@ export default function LiveLink() {
   const linked = Boolean(bind);
   const displayName = username.trim() || "username";
 
+  const deskMetrics = useMemo(
+    () => [
+      {
+        label: "API",
+        value:
+          apiOk === null ? "…" : apiOk ? "Online" : "Down",
+        sub: apiOk ? "/api/binds ready" : apiOk === false ? "Check deploy" : "Probing",
+      },
+      {
+        label: "Wallet",
+        value: wallet ? "On" : "Off",
+        sub: wallet ? wallet.name : "CCC connect",
+      },
+      {
+        label: "Network",
+        value: network,
+        sub: network === "testnet" ? "Recommended" : "Mainnet",
+      },
+      {
+        label: "Bind",
+        value: bind ? "Proven" : challenge ? "Challenge" : "Idle",
+        sub: bind?.did
+          ? "DID resolved"
+          : bind
+            ? "Signature OK"
+            : "Get challenge → sign",
+      },
+    ],
+    [apiOk, wallet, network, bind, challenge],
+  );
+
   return (
-    <div className="live-layout">
+    <div className="live-layout-wrap">
+      <DeskMetrics items={deskMetrics} label="Live CCC status" />
+      <div className="live-layout">
       <div className="demo-panel">
         <div className="live-banner">
           <strong>Live path</strong>
@@ -332,6 +366,7 @@ export default function LiveLink() {
           </p>
         </div>
       </aside>
+      </div>
     </div>
   );
 }

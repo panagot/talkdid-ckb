@@ -1,12 +1,23 @@
 import { Link } from "wouter";
 import { FilmStrip } from "@phosphor-icons/react";
+import DeskMetrics from "../components/DeskMetrics.jsx";
 import { FAQ, VERIFY_STEPS } from "../data/grant.js";
+import usePageTitle from "../hooks/usePageTitle.js";
+
+const VERIFY_METRICS = [
+  { label: "Path", value: "≤10 min", sub: "Connect → sign → badge" },
+  { label: "Network", value: "Testnet", sub: "Preferred first run" },
+  { label: "Live CCC", value: "Real", sub: "Wallet + server" },
+  { label: "Prod Talk", value: "Not yet", sub: "Plugin is the ship" },
+];
 
 export default function Verify() {
+  usePageTitle("Verify");
+
   return (
     <div className="page">
       <header className="page-hero">
-        <p className="eyebrow">For visitors · ≤10 min</p>
+        <p className="eyebrow">Verify path</p>
         <h1>How to verify</h1>
         <p className="lede">
           Live CCC proves wallet control on this demo. The Discourse plugin is
@@ -14,23 +25,35 @@ export default function Verify() {
         </p>
       </header>
 
-      <ol className="verify-steps">
+      <DeskMetrics items={VERIFY_METRICS} label="Verify status" />
+
+      <div className="verify-table" role="table" aria-label="Verify checklist">
+        <div className="verify-table-head" role="row">
+          <span role="columnheader">Step</span>
+          <span role="columnheader">Action</span>
+          <span role="columnheader">Time</span>
+          <span role="columnheader">Go</span>
+        </div>
         {VERIFY_STEPS.map((c, i) => (
-          <li key={c.title} className="verify-card">
-            <span className="step-n mono">{String(i + 1).padStart(2, "0")}</span>
-            <div>
-              <div className="verify-card-top">
-                <h2>{c.title}</h2>
-                <span className="verify-time">{c.time}</span>
-              </div>
+          <div key={c.title} className="verify-table-row" role="row">
+            <span className="mono" role="cell">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div role="cell">
+              <strong>{c.title}</strong>
               <p className="muted">{c.body}</p>
+            </div>
+            <span className="verify-time" role="cell">
+              {c.time}
+            </span>
+            <span role="cell">
               <Link href={c.href} className="text-link">
                 Open →
               </Link>
-            </div>
-          </li>
+            </span>
+          </div>
         ))}
-      </ol>
+      </div>
 
       <section className="section">
         <div className="section-head">

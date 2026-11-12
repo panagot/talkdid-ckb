@@ -1,6 +1,8 @@
 import { ARCH_EDGES, ARCH_NODES, TECH_STACK } from "../data/grant.js";
+import usePageTitle from "../hooks/usePageTitle.js";
 
 export default function Architecture() {
+  usePageTitle("Architecture");
   return (
     <div className="page">
       <header className="page-hero">

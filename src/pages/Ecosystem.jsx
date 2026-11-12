@@ -1,7 +1,9 @@
 import { Link } from "wouter";
 import { ECOSYSTEM, LINKS, TALK_SURFACE } from "../data/grant.js";
+import usePageTitle from "../hooks/usePageTitle.js";
 
 export default function Ecosystem() {
+  usePageTitle("Ecosystem");
   return (
     <div className="page">
       <header className="page-hero">

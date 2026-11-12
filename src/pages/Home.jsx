@@ -7,7 +7,16 @@ import {
   UserCircle,
   ChatsCircle,
 } from "@phosphor-icons/react";
+import DeskMetrics from "../components/DeskMetrics.jsx";
 import { NON_OVERLAP, PROPOSAL } from "../data/grant.js";
+import usePageTitle from "../hooks/usePageTitle.js";
+
+const HOME_METRICS = [
+  { label: "Live CCC", value: "Ready", sub: "Sign · verify · resolve" },
+  { label: "Surface", value: "Talk", sub: "Nervos Discourse" },
+  { label: "Badge", value: "did:ckb", sub: "Profile + posts" },
+  { label: "Plugin", value: "M1–M2", sub: "Installable artifact" },
+];
 
 const fade = {
   initial: { opacity: 0, y: 18 },
@@ -39,6 +48,8 @@ const POSTS = [
 ];
 
 export default function Home() {
+  usePageTitle("Overview");
+
   return (
     <div className="page home">
       <section className="hero hero-stage">
@@ -125,6 +136,8 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+
+      <DeskMetrics items={HOME_METRICS} label="Kit status" />
 
       <section className="section">
         <div className="section-head">

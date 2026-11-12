@@ -41,6 +41,17 @@ export default function Shell({ children }) {
         Skip to content
       </a>
       <div className="shell-grid" aria-hidden="true" />
+      <div className="status-strip" role="status">
+        <span className="status-pill">Demo kit</span>
+        <p>
+          Live CCC on this site · Discourse plugin is the product · not installed
+          on production talk.nervos.org
+        </p>
+        <a href={LINKS.talk} target="_blank" rel="noreferrer">
+          Open Nervos Talk
+          <ArrowSquareOut size={12} weight="bold" />
+        </a>
+      </div>
       <header className="nav">
         <Link href="/" className="brand">
           <span className="brand-mark" aria-hidden="true">

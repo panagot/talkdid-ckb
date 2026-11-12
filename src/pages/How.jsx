@@ -1,7 +1,9 @@
 import { Link } from "wouter";
 import { METHOD_STEPS } from "../data/grant.js";
+import usePageTitle from "../hooks/usePageTitle.js";
 
 export default function How() {
+  usePageTitle("How");
   return (
     <div className="page">
       <header className="page-hero">

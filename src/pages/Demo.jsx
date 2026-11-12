@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LiveLink from "../components/LiveLink.jsx";
 import TalkDiscoursePreview from "../components/TalkDiscoursePreview.jsx";
+import usePageTitle from "../hooks/usePageTitle.js";
 
 const TABS = [
   { id: "live", label: "Live CCC" },
@@ -8,12 +9,13 @@ const TABS = [
 ];
 
 export default function Demo() {
+  usePageTitle("Demo");
   const [tab, setTab] = useState("live");
 
   return (
     <div className="page demo-page">
       <header className="page-hero">
-        <p className="eyebrow">Product path</p>
+        <p className="eyebrow">Identity desk</p>
         <h1>Link a Talk user to did:ckb</h1>
         <p className="lede">
           <strong>Live CCC</strong> proves wallet ownership.{" "}
