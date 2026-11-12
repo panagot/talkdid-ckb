@@ -45,10 +45,12 @@ npm run build && npm run preview
 | --- | --- |
 | App-layer, not protocol theater | Thin Discourse plugin + existing `did:ckb` / CCC |
 | Talk-native venue | Spark itself runs on Nervos Talk |
-| Small budget (~$1–2k) | Two milestones, $1,500 total, clear exits |
-| Reviewable OSS | MIT plugin + staging Discourse before prod Talk |
+| Small budget (typical Spark) | Two milestones, **$1,000** total, clear exits |
+| Reviewable OSS | MIT plugin stub + staging Discourse before prod Talk |
 
-**Ask:** `$1,500` · **M1** `$750` · **M2** `$750` · **Track:** Talk Spark · DAOs & Funding
+**Ask:** `$1,000` · **M1** `$400` · **M2** `$600` · **Track:** Talk Spark · DAOs & Funding
+
+**Plugin stub (funded artifact path):** [`plugin/`](./plugin/) → push to [talkdid-discourse-plugin](https://github.com/panagot/talkdid-discourse-plugin)
 
 ---
 
@@ -57,7 +59,7 @@ npm run build && npm run preview
 1. **Story** — problem, solution, Spark fit on Home / Compare  
 2. **Demo** — challenge → sign → badge mock (no real wallet required)  
 3. **Architecture** — trust boundary: Discourse session vs DID proof  
-4. **Method** — six-week plan pinned to boring Discourse patterns  
+4. **Method** — ~5-week plan pinned to boring Discourse patterns  
 5. **Submit** — copy blocks for Talk Spark / Eco Fund fields  
 6. **Risks** — install gate, DID edge cases, opt-in — with mitigations  
 
@@ -113,11 +115,11 @@ npm run dev   # Vite + /api middleware
 
 ## Milestones (summary)
 
-**M1 — Plugin scaffold & DID challenge** ($750, weeks 1–3)  
-Plugin skeleton, nonce challenge, CCC sign verify, rate limits, tests, public README + local Discourse setup.
+**M1 — Plugin scaffold & DID challenge** ($400, weeks 1–3)  
+Plugin skeleton, nonce challenge, CCC sign verify, rate limits, tests, public plugin repo + Docker Dev README.
 
-**M2 — Profile badge, OSS, staging** ($750, weeks 4–6)  
-Verified badge on profile/posts, unlink/re-link, staging instance, docs/GIF, MIT + Spark update post.
+**M2 — Badge UI, staging, verify** ($600, weeks 4–5)  
+Verified badge on profile/posts, unlink/re-link, staging Discourse URL, ≤60s verify GIF, MIT + Spark update post.
 
 Full acceptance lists live in-app under **Submit** and **Reviewers**.
 

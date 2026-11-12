@@ -21,13 +21,15 @@ export const LINKS = {
     "https://talk.nervos.org/t/dao-v1-1-web5-identity-layer-community-led-review/10124",
   demo: "https://talkdid-ckb-j9kz.vercel.app/",
   repo: "https://github.com/panagot/talkdid-ckb",
+  pluginRepo: "https://github.com/panagot/talkdid-discourse-plugin",
+  staging: "", // filled when staging Discourse is live
 };
 
 export const PROPOSAL = {
   title: "TalkDID — Link did:ckb to Nervos Talk",
   oneLiner:
     "A Discourse plugin that binds Nervos Talk accounts to did:ckb identities — verified badges where the CKB community already posts.",
-  amountAsk: "$1,500",
+  amountAsk: "$1,000",
   track: "Talk Spark · DAOs & Funding",
   problem:
     "Nervos Talk (Discourse) is the public hub for Infrastructure, Applications, and DAOs & Funding — including Spark itself. Accounts there are ordinary Discourse logins. Meanwhile did:ckb lives on-chain (WIP-01 cells) and is already used in DAO / Web5 surfaces (e.g. Metaforo). Contributors cannot prove the same identity on Talk; mods rely on screenshots and social trust.",
@@ -39,13 +41,15 @@ export const PROPOSAL = {
     "On a prior Spark DID proposal, the committee suggested Discourse + CKB DID integration as a higher-adoption, ecosystem-aligned direction.",
   demoNote:
     "This site includes a Live CCC path (real wallet sign + server verify + did:ckb resolve on public RPC). It does not modify production talk.nervos.org. The funded artifact remains the installable Discourse plugin + staging forum.",
+  zhSummary:
+    "TalkDID：将 Nervos Talk（Discourse）账号与 did:ckb 绑定。用户通过 CCC 签名验证钱包控制权，论坛资料与帖子显示已验证徽章。不改动生产站 talk.nervos.org；交付物为可安装的 Discourse 插件 + 评审用 staging。申请 $1,000，约 5 周，两个里程碑。",
 };
 
 export const MILESTONES = [
   {
     id: "m1",
     title: "M1 — Plugin scaffold & DID challenge",
-    amount: "$750",
+    amount: "$400",
     weeks: "Weeks 1–3",
     deliverables: [
       "Discourse plugin skeleton (Rails) with site settings + admin toggle",
@@ -53,22 +57,45 @@ export const MILESTONES = [
       "Resolve / validate did:ckb using CCC did-ckb helpers (test vectors)",
       "Persist binding on UserCustomField; rate-limit attempts",
       "Unit tests for accept / reject paths",
-      "Public repo + README (Discourse Docker Dev install)",
+      "Public plugin repo + README (Discourse Docker Dev install)",
     ],
   },
   {
     id: "m2",
-    title: "M2 — Badge UI, staging, OSS",
-    amount: "$750",
-    weeks: "Weeks 4–6",
+    title: "M2 — Badge UI, staging, verify",
+    amount: "$600",
+    weeks: "Weeks 4–5",
     deliverables: [
       "Theme Component / plugin UI: badge on profile + post stream",
       "User unlink / re-link controls",
-      "Staging Discourse with plugin enabled (shareable to reviewers)",
-      "How-to-verify checklist + short GIF",
+      "Staging Discourse with plugin enabled (shareable URL)",
+      "How-to-verify checklist + ≤60s GIF/WebM",
       "MIT license, CONTRIBUTING, issue templates",
-      "Spark update post linking demo, staging, and repo",
+      "Spark update post linking demo, staging, and plugin repo",
     ],
+  },
+];
+
+export const NON_OVERLAP = [
+  {
+    name: "Nervos Talk",
+    theirs: "Forum accounts, no on-chain bind",
+    ours: "Adds did:ckb badge on existing Talk users",
+  },
+  {
+    name: "Vellum / did-ckb SDK",
+    theirs: "Create / resolve / history for DID cells",
+    ours: "Consumes resolve patterns; no minting UX rebuild",
+  },
+  {
+    name: "bbs.fans / xjdao",
+    theirs: "Web5 social apps with DID login",
+    ours: "Does not replace them — identity on Talk only",
+  },
+  {
+    name: "Metaforo / DAO Web5",
+    theirs: "Governance DID accounts",
+    ours: "Forum reputation bind — not DAO voting rights",
   },
 ];
 
@@ -159,7 +186,7 @@ export const COMPARE_ROWS = [
     newForum: "High adoption risk",
   },
   {
-    axis: "Scope for ~$1.5k",
+    axis: "Scope for ~$1k",
     talkdid: "Plugin + Theme Component + staging",
     walletOnly: "Easy to overscope",
     newForum: "Too large",
@@ -243,33 +270,41 @@ export const ARCH_EDGES = [
   "Theme Component → UI: read custom field → badge",
 ];
 
-export const VERIFY_CHECKS = [
+export const VERIFY_STEPS = [
   {
-    title: "Committee alignment",
-    body: "Read the Spark feedback that pointed builders toward Discourse × DID — TalkDID is that direction, not another toy gate.",
-    href: "/ecosystem",
-  },
-  {
-    title: "Click the mock link flow",
-    body: "Connect → challenge → sign → badge. Confirm copy is honest that this is a simulation.",
+    title: "Open Live CCC (testnet)",
+    body: "Demo → Live CCC. Prefer CKB Testnet. Connect Neuron, JoyID, or another CCC wallet.",
     href: "/demo",
+    time: "~1 min",
   },
   {
-    title: "Check non-overlap",
-    body: "TalkDID complements Metaforo/DAO Web5 and Vellum — it does not re-implement DID minting UX.",
+    title: "Get challenge → Sign & verify",
+    body: "Enter a Talk-style username, request a challenge, sign it. Server runs Signer.verifyMessage + did:ckb resolve.",
+    href: "/demo",
+    time: "~1 min",
+  },
+  {
+    title: "Confirm profile preview updates",
+    body: "Aside should flip to verified / wallet-proven. No DID cell still proves ownership; DID attaches when a cell exists.",
+    href: "/demo",
+    time: "instant",
+  },
+  {
+    title: "Check plugin stub + non-overlap",
+    body: "Plugin repo is the funded artifact path. Confirm TalkDID ≠ Vellum mint UX ≠ Metaforo DAO login ≠ bbs.fans.",
     href: "/ecosystem",
+    time: "~2 min",
   },
   {
-    title: "Milestone exits",
-    body: "M1 verify path + tests; M2 badge + staging. Total ask matches Spark scale.",
+    title: "Read M1/M2 exits @ $1,000",
+    body: "M1 plugin+verify; M2 badge+staging+GIF. Staging Discourse URL lands in M2 — production Talk install is not claimed.",
     href: "/submit",
-  },
-  {
-    title: "Risk register",
-    body: "Install gate, DID edge cases, opt-in, scope — each mitigated.",
-    href: "/risks",
+    time: "~2 min",
   },
 ];
+
+/** @deprecated use VERIFY_STEPS — kept for any stray imports */
+export const VERIFY_CHECKS = VERIFY_STEPS;
 
 export const FAQ = [
   {
@@ -283,6 +318,10 @@ export const FAQ = [
   {
     q: "Why not only a Theme Component?",
     a: "Badges need a trusted server check. A Theme Component can render UI; the Rails plugin owns nonce issue, verify, and storage so clients cannot forge a bind.",
+  },
+  {
+    q: "Is the Vite kit the deliverable?",
+    a: "No. It is the proposal companion + Live CCC crypto path. The funded artifact is the Discourse plugin repo + staging forum.",
   },
   {
     q: "Which wallets?",
@@ -322,8 +361,8 @@ export const DEMO_POSTS = [
 ];
 
 export const SUBMIT_FIELDS = {
-  projectName: PROPOSAL.title,
-  category: "DAOs & Funding / Community tooling",
+  projectName: "Spark Program | TalkDID — Bind did:ckb to Nervos Talk",
+  category: "DAOs & Funding / Community tooling · DID Solutions",
   shortDescription: PROPOSAL.oneLiner,
   problem: PROPOSAL.problem,
   solution: PROPOSAL.solution,
@@ -332,8 +371,12 @@ export const SUBMIT_FIELDS = {
       `${m.title} (${m.amount}, ${m.weeks})\n` +
       m.deliverables.map((d) => `• ${d}`).join("\n"),
   ).join("\n\n"),
-  budget: `${PROPOSAL.amountAsk} total — M1 $750 / M2 $750`,
+  budget: `${PROPOSAL.amountAsk} total — M1 $400 / M2 $600. Disbursement follows Spark 20% / 80%.`,
   team: `${BUILDER.label}. ${BUILDER.note}`,
-  links: `Demo: ${LINKS.demo} · Repo: ${LINKS.repo} · Talk: ${LINKS.talk} · WIP-01: ${LINKS.didWip}`,
+  links: `Demo: ${LINKS.demo} · Kit repo: ${LINKS.repo} · Plugin stub: ${LINKS.pluginRepo} · Talk: ${LINKS.talk} · WIP-01: ${LINKS.didWip} · Committee redirect: ${LINKS.sparkDidFeedback}`,
   whyNervos: `${PROPOSAL.whySpark}\n\nSignal: ${PROPOSAL.committeeSignal}`,
+  zhSummary: PROPOSAL.zhSummary,
+  nonOverlap: NON_OVERLAP.map(
+    (r) => `${r.name}\n  Existing: ${r.theirs}\n  TalkDID: ${r.ours}`,
+  ).join("\n\n"),
 };

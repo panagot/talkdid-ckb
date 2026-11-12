@@ -116,13 +116,14 @@ export default function Demo() {
   }
 
   return (
-    <div className="page">
+    <div className="page demo-page">
       <header className="page-hero">
-        <p className="eyebrow">Interactive mock</p>
-        <h1>TalkDID demo</h1>
+        <p className="eyebrow">Product path</p>
+        <h1>Link a Talk user to did:ckb</h1>
         <p className="lede">
-          Start with <strong>Live CCC</strong> (real wallet + server verify + DID
-          resolve). Mock / stream / mod tabs stay available for offline review.
+          <strong>Live CCC</strong> is the real crypto path (wallet → challenge →
+          verify). Mock / stream / mod tabs are for offline review when you do
+          not have a wallet handy.
         </p>
       </header>
 

@@ -1,0 +1,3 @@
+Drop verify.gif here (≤60s WebM/GIF).
+Suggested capture: Demo → Live CCC → Connect testnet → challenge → sign → verified preview.
+Then update Verify.jsx to <img src="/verify.gif" alt="TalkDID verify path" />.

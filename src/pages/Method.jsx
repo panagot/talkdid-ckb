@@ -7,8 +7,8 @@ export default function Method() {
         <p className="eyebrow">Delivery</p>
         <h1>Method & build plan</h1>
         <p className="lede">
-          Six weeks, two payout gates. Prefer boring Discourse plugin patterns
-          over novel cryptography.
+          ~5 weeks, two payout gates at {PROPOSAL.amountAsk}. Prefer boring
+          Discourse plugin patterns over novel cryptography.
         </p>
       </header>
 
@@ -36,13 +36,10 @@ export default function Method() {
               <strong>W3</strong> Signature verify + M1 checklist / tests
             </li>
             <li>
-              <strong>W4</strong> Badge UI on profile & post stream
+              <strong>W4</strong> Badge UI + unlink/re-link
             </li>
             <li>
-              <strong>W5</strong> Staging Discourse + docs / GIF
-            </li>
-            <li>
-              <strong>W6</strong> Polish, unlink flow, Spark update post
+              <strong>W5</strong> Staging Discourse + verify GIF + Spark post
             </li>
           </ul>
         </article>

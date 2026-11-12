@@ -1,0 +1,15 @@
+plugins:
+  talkdid_enabled:
+    default: false
+    client: true
+  talkdid_network:
+    default: "testnet"
+    client: true
+    type: enum
+    choices:
+      - testnet
+      - mainnet
+  talkdid_challenge_ttl_seconds:
+    default: 300
+    min: 60
+    max: 900

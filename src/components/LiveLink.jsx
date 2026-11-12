@@ -3,6 +3,7 @@ import { ccc } from "@ckb-ccc/connector-react";
 import {
   CheckCircle,
   CircleNotch,
+  SealCheck,
   WarningCircle,
   Wallet,
 } from "@phosphor-icons/react";
@@ -129,13 +130,16 @@ export default function LiveLink() {
     }
   }
 
+  const linked = Boolean(bind);
+  const displayName = username.trim() || "username";
+
   return (
     <div className="live-layout">
       <div className="demo-panel">
         <div className="live-banner">
           <strong>Live path</strong>
           <span className="muted">
-            Real CCC sign · server verify · did:ckb resolve on public RPC
+            Real CCC sign · server verify · did:ckb on public RPC
           </span>
         </div>
 
@@ -146,6 +150,16 @@ export default function LiveLink() {
             <code>/api/*</code>.
           </p>
         )}
+
+        <ol className="live-steps" aria-label="Link steps">
+          <li className={wallet ? "done" : "current"}>Connect wallet</li>
+          <li className={challenge ? "done" : wallet ? "current" : ""}>
+            Get challenge
+          </li>
+          <li className={bind ? "done" : challenge ? "current" : ""}>
+            Sign & verify
+          </li>
+        </ol>
 
         <div className="live-row">
           <label htmlFor="net">Network</label>
@@ -164,7 +178,7 @@ export default function LiveLink() {
         </div>
 
         <div className="live-row">
-          <label htmlFor="live-user">Demo username (Talk-style)</label>
+          <label htmlFor="live-user">Talk username</label>
           <input
             id="live-user"
             value={username}
@@ -262,28 +276,47 @@ export default function LiveLink() {
         )}
       </div>
 
-      <aside className="panel">
-        <h3>What this proves</h3>
-        <ul>
-          <li>CCC modal (Neuron, JoyID, …)</li>
-          <li>HMAC-signed challenge from our API</li>
-          <li>
-            <code>Signer.verifyMessage</code> on the server
-          </li>
-          <li>
-            <code>listDidCkbsByLock</code> against public CKB RPC
-          </li>
-        </ul>
-        <p className="muted">
-          This is not an install on talk.nervos.org — it is the cryptographic
-          core a Discourse plugin would call. Prefer <strong>testnet</strong>{" "}
-          first.
-        </p>
-        <p className="muted">
-          No DID cell? Signature still proves wallet control. Create a{" "}
-          <em>did:ckb</em> with ecosystem tooling, then re-verify to attach the
-          badge id.
-        </p>
+      <aside className="talk-preview-aside">
+        <div className={`forum-card tall ${linked ? "is-linked" : ""}`}>
+          <div className="forum-card-top">
+            <span>Talk profile</span>
+            {linked ? (
+              <span className="pill ok-pill">verified</span>
+            ) : (
+              <span className="pill">unlinked</span>
+            )}
+          </div>
+          <div className="forum-user">
+            <div className={`avatar ${linked ? "verified-ring" : ""}`}>
+              {displayName.slice(0, 1).toUpperCase()}
+            </div>
+            <div>
+              <p className="forum-name">
+                {displayName}
+                {linked && (
+                  <SealCheck className="verified" weight="fill" size={18} />
+                )}
+              </p>
+              {linked && bind?.did ? (
+                <p className="mono did-line">{bind.did}</p>
+              ) : linked ? (
+                <p className="muted">Wallet proven · DID cell optional</p>
+              ) : (
+                <p className="muted">No did:ckb bound yet</p>
+              )}
+            </div>
+          </div>
+          <ul className="preview-list">
+            <li className={wallet ? "done" : ""}>CCC wallet connected</li>
+            <li className={challenge ? "done" : ""}>Challenge issued</li>
+            <li className={bind ? "done" : ""}>Signature verified</li>
+            <li className={bind?.did ? "done" : ""}>DID resolved</li>
+          </ul>
+          <p className="forum-caption">
+            Staging only — not installed on production talk.nervos.org. Prefer
+            testnet. No DID cell still proves wallet control.
+          </p>
+        </div>
       </aside>
     </div>
   );

@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Check, Copy } from "@phosphor-icons/react";
-import { BUILDER, MILESTONES, PROPOSAL, SUBMIT_FIELDS } from "../data/grant.js";
+import {
+  BUILDER,
+  MILESTONES,
+  NON_OVERLAP,
+  PROPOSAL,
+  SUBMIT_FIELDS,
+} from "../data/grant.js";
 
 function CopyBlock({ label, value }) {
   const [ok, setOk] = useState(false);
@@ -57,6 +63,9 @@ export default function Submit() {
     "Short description:",
     SUBMIT_FIELDS.shortDescription,
     "",
+    "中文摘要:",
+    SUBMIT_FIELDS.zhSummary,
+    "",
     "Problem:",
     SUBMIT_FIELDS.problem,
     "",
@@ -65,6 +74,9 @@ export default function Submit() {
     "",
     "Why Nervos / Spark:",
     SUBMIT_FIELDS.whyNervos,
+    "",
+    "Non-overlap:",
+    SUBMIT_FIELDS.nonOverlap,
     "",
     "Milestones:",
     SUBMIT_FIELDS.milestones,
@@ -82,8 +94,8 @@ export default function Submit() {
         <p className="eyebrow">Spark form kit</p>
         <h1>Paste-ready proposal</h1>
         <p className="lede">
-          Copy blocks into Talk Spark / Eco Fund fields. Adjust repo URL once
-          the GitHub repo is public or shared with reviewers.
+          Ask {PROPOSAL.amountAsk} · typical Spark scale. Copy into a Talk post
+          under Spark Program with tag <code>Spark-program</code>.
         </p>
       </header>
 
@@ -105,12 +117,38 @@ export default function Submit() {
       <CopyBlock label="Full pack (all fields)" value={fullPack} />
       <CopyBlock label="Project name" value={SUBMIT_FIELDS.projectName} />
       <CopyBlock label="Short description" value={SUBMIT_FIELDS.shortDescription} />
+      <CopyBlock label="中文摘要" value={SUBMIT_FIELDS.zhSummary} />
       <CopyBlock label="Problem" value={SUBMIT_FIELDS.problem} />
       <CopyBlock label="Solution" value={SUBMIT_FIELDS.solution} />
       <CopyBlock label="Why Spark / Nervos" value={SUBMIT_FIELDS.whyNervos} />
+      <CopyBlock label="Non-overlap" value={SUBMIT_FIELDS.nonOverlap} />
       <CopyBlock label="Milestones" value={SUBMIT_FIELDS.milestones} />
       <CopyBlock label="Budget" value={SUBMIT_FIELDS.budget} />
       <CopyBlock label="Team" value={SUBMIT_FIELDS.team} />
+      <CopyBlock label="Links" value={SUBMIT_FIELDS.links} />
+
+      <section className="section">
+        <div className="section-head">
+          <h2>Non-overlap at a glance</h2>
+          <p className="muted">
+            Same stack, different job — avoid DID Quickstart / DAO widget reject
+            patterns.
+          </p>
+        </div>
+        <div className="overlap-grid">
+          {NON_OVERLAP.map((row) => (
+            <article key={row.name} className="panel">
+              <h3>{row.name}</h3>
+              <p className="muted">
+                <strong>Existing:</strong> {row.theirs}
+              </p>
+              <p>
+                <strong>TalkDID:</strong> {row.ours}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <section className="section">
         <div className="section-head">

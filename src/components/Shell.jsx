@@ -1,43 +1,67 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import {
   List,
   X,
   ArrowSquareOut,
   CirclesThreePlus,
+  CaretDown,
 } from "@phosphor-icons/react";
 import { LINKS, PROPOSAL } from "../data/grant.js";
 import HelpFab from "./HelpFab.jsx";
 
-const NAV = [
-  { href: "/", label: "Home" },
+const NAV_PRIMARY = [
   { href: "/demo", label: "Demo" },
+  { href: "/how", label: "How" },
+  { href: "/reviewers", label: "Reviewers" },
+  { href: "/submit", label: "Submit" },
+];
+
+const NAV_MORE = [
   { href: "/ecosystem", label: "Ecosystem" },
   { href: "/architecture", label: "Architecture" },
   { href: "/compare", label: "Compare" },
   { href: "/verify", label: "Verify" },
-  { href: "/reviewers", label: "Reviewers" },
-  { href: "/submit", label: "Submit" },
+  { href: "/method", label: "Method" },
   { href: "/risks", label: "Risks" },
 ];
 
 export default function Shell({ children }) {
   const [loc] = useLocation();
   const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef(null);
+
+  const moreActive = NAV_MORE.some((item) => item.href === loc);
 
   useEffect(() => {
     setOpen(false);
+    setMoreOpen(false);
     window.scrollTo(0, 0);
   }, [loc]);
 
   useEffect(() => {
-    if (!open) return undefined;
+    if (!open && !moreOpen) return undefined;
     function onKey(e) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        setMoreOpen(false);
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, [open, moreOpen]);
+
+  useEffect(() => {
+    if (!moreOpen) return undefined;
+    function onDoc(e) {
+      if (moreRef.current && !moreRef.current.contains(e.target)) {
+        setMoreOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, [moreOpen]);
 
   return (
     <div className="shell">
@@ -61,7 +85,7 @@ export default function Shell({ children }) {
           className={`nav-links ${open ? "is-open" : ""}`}
           aria-label="Primary"
         >
-          {NAV.map((item) => (
+          {NAV_PRIMARY.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -71,11 +95,51 @@ export default function Shell({ children }) {
               {item.label}
             </Link>
           ))}
+
+          <div className={`nav-more ${moreOpen ? "is-open" : ""}`} ref={moreRef}>
+            <button
+              type="button"
+              className={`nav-more-btn ${moreActive ? "active" : ""}`}
+              aria-expanded={moreOpen}
+              aria-haspopup="menu"
+              onClick={() => setMoreOpen((v) => !v)}
+            >
+              More <CaretDown size={12} weight="bold" />
+            </button>
+            {moreOpen && (
+              <div className="nav-more-menu" role="menu">
+                {NAV_MORE.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    role="menuitem"
+                    className={loc === item.href ? "active" : ""}
+                    aria-current={loc === item.href ? "page" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="nav-mobile-extras">
+            {NAV_MORE.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={loc === item.href ? "active" : ""}
+                aria-current={loc === item.href ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </nav>
 
         <div className="nav-actions">
           <a
-            className="btn btn-ghost btn-sm"
+            className="btn btn-ghost btn-sm nav-talk-link"
             href={LINKS.talk}
             target="_blank"
             rel="noreferrer"
@@ -164,7 +228,12 @@ export default function Shell({ children }) {
               </li>
               <li>
                 <a href={LINKS.repo} target="_blank" rel="noreferrer">
-                  GitHub (private)
+                  Kit repo
+                </a>
+              </li>
+              <li>
+                <a href={LINKS.pluginRepo} target="_blank" rel="noreferrer">
+                  Plugin stub
                 </a>
               </li>
               <li>License · MIT</li>

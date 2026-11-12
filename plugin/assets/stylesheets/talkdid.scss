@@ -1,0 +1,16 @@
+/* TalkDID badge — Theme Component will own most UI in M2 */
+
+.talkdid-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--success, #2f9e6b);
+  font-size: 0.85em;
+}
+
+.talkdid-badge__did {
+  font-family: ui-monospace, monospace;
+  font-size: 0.8em;
+  opacity: 0.85;
+  word-break: break-all;
+}
