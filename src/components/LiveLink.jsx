@@ -8,7 +8,6 @@ import {
   Wallet,
 } from "@phosphor-icons/react";
 import { fetchBind, requestChallenge, verifyChallenge } from "../lib/api.js";
-import { LINKS } from "../data/grant.js";
 
 function validUsername(name) {
   return /^[a-zA-Z0-9._-]{2,20}$/.test(name);
