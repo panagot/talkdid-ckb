@@ -93,7 +93,7 @@ export default function Architecture() {
         <p>
           Discourse remains the session authority for posting. TalkDID only
           asserts “this Talk user controlled this did:ckb at link time.” It does
-          not grant DAO votes or replace Metaforo Web5. Mods still moderate
+          not DAO votes or replace Metaforo Web5. Mods still moderate
           content; the badge reduces impersonation and screenshot theater.
         </p>
       </div>

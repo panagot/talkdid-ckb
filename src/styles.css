@@ -291,6 +291,10 @@ em {
   gap: 2rem;
 }
 
+.footer-grid-compact {
+  grid-template-columns: 1.6fr 1fr 1fr;
+}
+
 .footer-brand {
   font-family: var(--display);
   font-size: 1.25rem;

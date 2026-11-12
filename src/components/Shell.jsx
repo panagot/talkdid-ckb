@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import {
   List,
   X,
   ArrowSquareOut,
   CirclesThreePlus,
-  CaretDown,
 } from "@phosphor-icons/react";
 import { LINKS, PROPOSAL } from "../data/grant.js";
 import HelpFab from "./HelpFab.jsx";
@@ -15,50 +14,26 @@ const NAV_PRIMARY = [
   { href: "/how", label: "How" },
   { href: "/architecture", label: "Architecture" },
   { href: "/ecosystem", label: "Ecosystem" },
-];
-
-const NAV_MORE = [
-  { href: "/compare", label: "Compare" },
   { href: "/verify", label: "Verify" },
-  { href: "/risks", label: "Risks" },
 ];
 
 export default function Shell({ children }) {
   const [loc] = useLocation();
   const [open, setOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
-  const moreRef = useRef(null);
-
-  const moreActive = NAV_MORE.some((item) => item.href === loc);
 
   useEffect(() => {
     setOpen(false);
-    setMoreOpen(false);
     window.scrollTo(0, 0);
   }, [loc]);
 
   useEffect(() => {
-    if (!open && !moreOpen) return undefined;
+    if (!open) return undefined;
     function onKey(e) {
-      if (e.key === "Escape") {
-        setOpen(false);
-        setMoreOpen(false);
-      }
+      if (e.key === "Escape") setOpen(false);
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, moreOpen]);
-
-  useEffect(() => {
-    if (!moreOpen) return undefined;
-    function onDoc(e) {
-      if (moreRef.current && !moreRef.current.contains(e.target)) {
-        setMoreOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", onDoc);
-    return () => document.removeEventListener("mousedown", onDoc);
-  }, [moreOpen]);
+  }, [open]);
 
   return (
     <div className="shell">
@@ -92,46 +67,6 @@ export default function Shell({ children }) {
               {item.label}
             </Link>
           ))}
-
-          <div className={`nav-more ${moreOpen ? "is-open" : ""}`} ref={moreRef}>
-            <button
-              type="button"
-              className={`nav-more-btn ${moreActive ? "active" : ""}`}
-              aria-expanded={moreOpen}
-              aria-haspopup="menu"
-              onClick={() => setMoreOpen((v) => !v)}
-            >
-              More <CaretDown size={12} weight="bold" />
-            </button>
-            {moreOpen && (
-              <div className="nav-more-menu" role="menu">
-                {NAV_MORE.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    role="menuitem"
-                    className={loc === item.href ? "active" : ""}
-                    aria-current={loc === item.href ? "page" : undefined}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div className="nav-mobile-extras">
-            {NAV_MORE.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={loc === item.href ? "active" : ""}
-                aria-current={loc === item.href ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
         </nav>
 
         <div className="nav-actions">
@@ -165,7 +100,7 @@ export default function Shell({ children }) {
       </main>
 
       <footer className="footer">
-        <div className="footer-grid">
+        <div className="footer-grid footer-grid-compact">
           <div>
             <p className="footer-brand">TalkDID</p>
             <p className="muted">{PROPOSAL.oneLiner}</p>
@@ -210,30 +145,11 @@ export default function Shell({ children }) {
               </li>
             </ul>
           </div>
-          <div>
-            <p className="footer-label">Project</p>
-            <ul>
-              <li>
-                <a href={LINKS.repo} target="_blank" rel="noreferrer">
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a href={LINKS.pluginRepo} target="_blank" rel="noreferrer">
-                  Plugin source
-                </a>
-              </li>
-              <li>License · MIT</li>
-              <li>
-                <Link href="/risks">Risks</Link>
-              </li>
-            </ul>
-          </div>
         </div>
         <div className="footer-bar">
           <span>
-            Independent demo · not affiliated with Nervos Foundation or CKB Eco
-            Fund · not installed on production Talk
+            Independent demo · not affiliated with Nervos Foundation · not
+            installed on production Talk
           </span>
         </div>
       </footer>

@@ -6,9 +6,7 @@ import How from "./pages/How.jsx";
 import Demo from "./pages/Demo.jsx";
 import Ecosystem from "./pages/Ecosystem.jsx";
 import Architecture from "./pages/Architecture.jsx";
-import Compare from "./pages/Compare.jsx";
 import Verify from "./pages/Verify.jsx";
-import Risks from "./pages/Risks.jsx";
 
 function NotFound() {
   const [, setLoc] = useLocation();
@@ -23,14 +21,11 @@ export default function App() {
     <Shell>
       <Switch>
         <Route path="/" component={Home} />
-        <Route path="/how" component={How} />
         <Route path="/demo" component={Demo} />
-        <Route path="/ecosystem" component={Ecosystem} />
+        <Route path="/how" component={How} />
         <Route path="/architecture" component={Architecture} />
-        <Route path="/compare" component={Compare} />
+        <Route path="/ecosystem" component={Ecosystem} />
         <Route path="/verify" component={Verify} />
-        <Route path="/risks" component={Risks} />
-        {/* Grant-only pages removed from public demo: /submit /reviewers /method */}
         <Route component={NotFound} />
       </Switch>
     </Shell>

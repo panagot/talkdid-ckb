@@ -9,9 +9,9 @@ import {
 const TOPICS = [
   {
     id: 1,
-    cat: "Spark Program",
-    catColor: "#3dcf9a",
-    title: "Spark Program | TalkDID — Bind did:ckb to Nervos Talk",
+    cat: "Infrastructure",
+    catColor: "#5b8def",
+    title: "Fiber node notes from last week",
     replies: 4,
     views: 128,
     activity: "2h",
@@ -22,13 +22,13 @@ const TOPICS = [
   },
   {
     id: 2,
-    cat: "Spark Program",
+    cat: "Applications",
     catColor: "#3dcf9a",
-    title: "[Spark Proposal] CKB-Up: 1-Click Headless Setup for ARM & VPS",
+    title: "Looking for wallet QA volunteers",
     replies: 0,
     views: 39,
     activity: "3d",
-    author: "Owais",
+    author: "newcomer",
     verified: false,
   },
   {
@@ -45,9 +45,9 @@ const TOPICS = [
   },
   {
     id: 4,
-    cat: "DAOs & Funding",
+    cat: "General",
     catColor: "#c9a227",
-    title: "Looking for wallet QA volunteers this week",
+    title: "First post — feedback welcome",
     replies: 7,
     views: 210,
     activity: "1d",
@@ -134,9 +134,9 @@ export default function TalkDiscoursePreview({
           {view === "topics" && (
             <>
               <div className="dc-breadcrumb">
-                <span>DAOs & Funding</span>
+                <span>Categories</span>
                 <span>/</span>
-                <span className="dc-strong">Spark Program</span>
+                <span className="dc-strong">Latest</span>
               </div>
               <h2 className="dc-h">Latest</h2>
               <div className="dc-table-head">
@@ -212,7 +212,7 @@ export default function TalkDiscoursePreview({
                     <p className="dc-nodid">No did:ckb linked yet</p>
                   )}
                   <p className="dc-meta">
-                    Trust level 2 · Joined Spark category ·{" "}
+                    Trust level 2 ·{" "}
                     {isLinked ? "Wallet proven" : "Username only"}
                   </p>
                 </div>

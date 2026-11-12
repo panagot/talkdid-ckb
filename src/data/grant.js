@@ -303,7 +303,6 @@ export const VERIFY_STEPS = [
   },
 ];
 
-/** @deprecated use VERIFY_STEPS — kept for any stray imports */
 export const VERIFY_CHECKS = VERIFY_STEPS;
 
 export const FAQ = [
@@ -321,7 +320,7 @@ export const FAQ = [
   },
   {
     q: "Is this website the Discourse plugin?",
-    a: "No. This is a public demo of the link flow. The plugin is a separate Rails package (see the plugin/ stub in the repo).",
+    a: "No. This is a public demo of the link flow. The product is an installable Discourse plugin (Rails) that would run on a forum like Talk.",
   },
   {
     q: "Which wallets?",

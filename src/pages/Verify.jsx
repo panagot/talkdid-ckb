@@ -1,6 +1,6 @@
 import { Link } from "wouter";
-import { FilmStrip, ArrowSquareOut } from "@phosphor-icons/react";
-import { FAQ, LINKS, VERIFY_STEPS } from "../data/grant.js";
+import { FilmStrip } from "@phosphor-icons/react";
+import { FAQ, VERIFY_STEPS } from "../data/grant.js";
 
 export default function Verify() {
   return (
@@ -62,7 +62,7 @@ export default function Verify() {
               <li>Live CCC: real sign + server verify on this kit</li>
               <li>Clear UX for Discourse ↔ did:ckb bind</li>
               <li>Non-overlap with DAO Web5, Vellum, bbs.fans</li>
-              <li>Open-source plugin stub in the repo</li>
+              <li>Intended product: installable Discourse plugin</li>
             </ul>
           </article>
           <article className="panel">
@@ -82,16 +82,11 @@ export default function Verify() {
           <h2>Repos</h2>
         </div>
         <div className="link-row">
-          <a
-            className="btn btn-secondary btn-sm"
-            href={LINKS.pluginRepo}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Plugin stub <ArrowSquareOut size={14} />
-          </a>
           <Link href="/demo" className="btn btn-primary btn-sm">
             Open Live CCC
+          </Link>
+          <Link href="/ecosystem" className="btn btn-secondary btn-sm">
+            Ecosystem map
           </Link>
         </div>
       </section>
