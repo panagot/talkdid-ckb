@@ -42,32 +42,45 @@ export default async function handler(req, res) {
     let primaryDid = null;
     let resolveNote = null;
 
-    try {
-      const identity = sig.identity || address;
-      if (!identity) {
-        resolveNote = "No identity on signature — DID list skipped";
-      } else {
-        const addrObj = await ccc.Address.fromString(identity, client);
-        const owned = await ccc.didCkb.listDidCkbsByLock({
-          client,
-          lock: addrObj.script,
-        });
-        dids = owned.map((d) => d.did);
-        primaryDid = dids[0] || null;
-        if (!primaryDid) {
-          resolveNote =
-            "Wallet verified, but no live did:ckb cell for this lock. Create one with DID tooling, then re-verify.";
+    // Prefer the CKB recommended address from the client (ckt1…/ckb1…).
+    // MetaMask CCC signatures often carry an EVM 0x identity that Address.fromString rejects.
+    const candidates = [address, sig.identity].filter(Boolean);
+    const unique = [...new Set(candidates)];
+
+    if (!unique.length) {
+      resolveNote = "Wallet proven. DID lookup skipped (no address on request).";
+    } else {
+      let resolved = false;
+      for (const candidate of unique) {
+        try {
+          const addrObj = await ccc.Address.fromString(candidate, client);
+          const owned = await ccc.didCkb.listDidCkbsByLock({
+            client,
+            lock: addrObj.script,
+          });
+          dids = owned.map((d) => d.did);
+          primaryDid = dids[0] || null;
+          resolved = true;
+          if (!primaryDid) {
+            resolveNote =
+              "Wallet proven. No did:ckb cell for this lock yet — optional for the demo.";
+          }
+          break;
+        } catch {
+          /* try next candidate */
         }
       }
-    } catch (err) {
-      resolveNote = `DID resolve warning: ${err.message || String(err)}`;
+      if (!resolved) {
+        resolveNote =
+          "Wallet proven. DID lookup needs a CKB address (Neuron/JoyID); MetaMask 0x identity alone cannot resolve a DID cell.";
+      }
     }
 
     const record = {
       username: payload.username,
       network,
       forum: payload.forum,
-      address: sig.identity || address || null,
+      address: address || sig.identity || null,
       signType: sig.signType || null,
       did: primaryDid,
       dids,

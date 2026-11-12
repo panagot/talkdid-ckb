@@ -281,10 +281,7 @@ export default function LiveLink() {
             </ul>
             {bind.resolveNote && (
               <p className="muted" style={{ marginTop: "0.75rem" }}>
-                {bind.resolveNote}{" "}
-                <a href={LINKS.vellum} target="_blank" rel="noreferrer">
-                  DID tooling →
-                </a>
+                {bind.resolveNote}
               </p>
             )}
           </div>
@@ -325,11 +322,14 @@ export default function LiveLink() {
             <li className={wallet ? "done" : ""}>CCC wallet connected</li>
             <li className={challenge ? "done" : ""}>Challenge issued</li>
             <li className={bind ? "done" : ""}>Signature verified</li>
-            <li className={bind?.did ? "done" : ""}>DID resolved</li>
+            <li className={bind?.did ? "done" : ""}>
+              DID cell {bind?.did ? "found" : "(optional)"}
+            </li>
           </ul>
           <p className="forum-caption">
             Demo kit only — not installed on production talk.nervos.org. Prefer
-            testnet. No DID cell still proves wallet control.
+            testnet. Signature verify is enough for this demo; a DID cell is
+            optional.
           </p>
         </div>
       </aside>
