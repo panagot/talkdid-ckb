@@ -50,7 +50,7 @@ npm run build && npm run preview
 
 **Ask:** `$1,000` · **M1** `$400` · **M2** `$600` · **Track:** Talk Spark · DAOs & Funding
 
-**Plugin stub (funded artifact path):** [`plugin/`](./plugin/) → push to [talkdid-discourse-plugin](https://github.com/panagot/talkdid-discourse-plugin)
+**Plugin stub (funded artifact path):** [`plugin/`](./plugin/) on this repo
 
 ---
 

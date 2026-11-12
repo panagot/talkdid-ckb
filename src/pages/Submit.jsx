@@ -63,9 +63,6 @@ export default function Submit() {
     "Short description:",
     SUBMIT_FIELDS.shortDescription,
     "",
-    "中文摘要:",
-    SUBMIT_FIELDS.zhSummary,
-    "",
     "Problem:",
     SUBMIT_FIELDS.problem,
     "",
@@ -117,7 +114,6 @@ export default function Submit() {
       <CopyBlock label="Full pack (all fields)" value={fullPack} />
       <CopyBlock label="Project name" value={SUBMIT_FIELDS.projectName} />
       <CopyBlock label="Short description" value={SUBMIT_FIELDS.shortDescription} />
-      <CopyBlock label="中文摘要" value={SUBMIT_FIELDS.zhSummary} />
       <CopyBlock label="Problem" value={SUBMIT_FIELDS.problem} />
       <CopyBlock label="Solution" value={SUBMIT_FIELDS.solution} />
       <CopyBlock label="Why Spark / Nervos" value={SUBMIT_FIELDS.whyNervos} />

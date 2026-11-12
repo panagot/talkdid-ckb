@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { METHOD_STEPS, PROPOSAL } from "../data/grant.js";
+import { METHOD_STEPS } from "../data/grant.js";
 
 export default function How() {
   return (
@@ -26,14 +26,14 @@ export default function How() {
       </ol>
 
       <div className="callout">
-        <h3>What reviewers should expect</h3>
+        <h3>Important</h3>
         <p>
-          M1–M2 deliver a working plugin + staging Discourse — not a production
-          install on talk.nervos.org (that needs Talk admins). This kit proves
-          the UX and the grant scope. Ask: {PROPOSAL.amountAsk}.
+          This demo is not installed on production talk.nervos.org. Admins would
+          need to install the Discourse plugin. Try Live CCC and the Talk preview
+          to see the intended flow.
         </p>
         <Link href="/demo" className="btn btn-primary btn-sm">
-          Run the mock flow
+          Open demo
         </Link>
       </div>
     </div>

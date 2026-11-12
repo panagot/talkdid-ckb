@@ -12,7 +12,7 @@ const CHECKS = [
   {
     icon: Eye,
     title: "Click the demo",
-    body: "Link flow, post stream badges, and mod view — no real wallet required.",
+    body: "Live CCC (real wallet), Talk preview mock, Mock flow, and mod view.",
     href: "/demo",
   },
   {
@@ -30,7 +30,7 @@ const CHECKS = [
   {
     icon: GitBranch,
     title: "Read milestones",
-    body: "M1 verify path + tests; M2 badge + staging + OSS. Ask matches Spark scale.",
+    body: `M1 plugin+verify; M2 badge+staging+GIF. Ask ${PROPOSAL.amountAsk}.`,
     href: "/submit",
   },
   {

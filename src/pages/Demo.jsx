@@ -8,13 +8,13 @@ import {
   WarningCircle,
 } from "@phosphor-icons/react";
 import LiveLink from "../components/LiveLink.jsx";
-import { DEMO_POSTS } from "../data/grant.js";
+import TalkDiscoursePreview from "../components/TalkDiscoursePreview.jsx";
 
 const STEPS = ["idle", "connect", "challenge", "sign", "verify", "done"];
 const TABS = [
   { id: "live", label: "Live CCC" },
+  { id: "talk", label: "Talk preview" },
   { id: "link", label: "Mock flow" },
-  { id: "stream", label: "Post stream" },
   { id: "mod", label: "Mod view" },
 ];
 
@@ -121,9 +121,9 @@ export default function Demo() {
         <p className="eyebrow">Product path</p>
         <h1>Link a Talk user to did:ckb</h1>
         <p className="lede">
-          <strong>Live CCC</strong> is the real crypto path (wallet → challenge →
-          verify). Mock / stream / mod tabs are for offline review when you do
-          not have a wallet handy.
+          <strong>Live CCC</strong> proves the crypto. <strong>Talk preview</strong>{" "}
+          shows how badges would look on a Discourse UI like talk.nervos.org
+          (mock — no plugin exists on production Talk yet).
         </p>
       </header>
 
@@ -143,6 +143,14 @@ export default function Demo() {
       </div>
 
       {tab === "live" && <LiveLink />}
+
+      {tab === "talk" && (
+        <TalkDiscoursePreview
+          username={username}
+          linked={linked}
+          did={did}
+        />
+      )}
 
       {tab === "link" && (
         <div className="demo-layout">
@@ -241,9 +249,9 @@ export default function Demo() {
                   <button
                     type="button"
                     className="btn btn-secondary"
-                    onClick={() => setTab("stream")}
+                    onClick={() => setTab("talk")}
                   >
-                    See post stream
+                    See Talk preview
                   </button>
                   <button type="button" className="btn btn-ghost" onClick={unlink}>
                     Unlink (reset)
@@ -292,60 +300,6 @@ export default function Demo() {
         </div>
       )}
 
-      {tab === "stream" && (
-        <div className="stream-panel">
-          <p className="muted stream-note">
-            Simulated topic list — badges only appear when a user has completed the
-            link flow (your demo user:{" "}
-            <strong>{linked ? "verified" : "not linked yet"}</strong>).
-          </p>
-          <ul className="topic-list">
-            {DEMO_POSTS.map((p) => {
-              const isYou = p.author === "builder" && linked;
-              const show = p.verified || isYou;
-              const author =
-                p.author === "builder" ? username.trim() || "builder" : p.author;
-              return (
-                <li key={p.id} className="topic-row">
-                  <div className="topic-cat">{p.cat}</div>
-                  <div className="topic-body">
-                    <p className="topic-title">{p.title}</p>
-                    <p className="muted">{p.excerpt}</p>
-                    <p className="topic-meta">
-                      <span className="topic-author">
-                        {author}
-                        {show && (
-                          <SealCheck
-                            className="verified"
-                            weight="fill"
-                            size={16}
-                            aria-label="Verified did:ckb"
-                          />
-                        )}
-                      </span>
-                      {show ? (
-                        <span className="mono did-tiny">did:ckb:…</span>
-                      ) : (
-                        <span className="muted">no DID</span>
-                      )}
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-          {!linked && (
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => setTab("link")}
-            >
-              Link your account to unlock badge
-            </button>
-          )}
-        </div>
-      )}
-
       {tab === "mod" && (
         <div className="mod-panel">
           <div className="two-col">
@@ -353,7 +307,7 @@ export default function Demo() {
               <h3>Without TalkDID</h3>
               <ul>
                 <li>“Is this the same wallet person?” → screenshot theater</li>
-                <li>Impersonation in Spark threads is hard to spot</li>
+                <li>Impersonation in funding threads is hard to spot</li>
                 <li>Trust levels ≠ on-chain control</li>
               </ul>
             </article>

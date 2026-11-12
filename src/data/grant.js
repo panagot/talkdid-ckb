@@ -9,7 +9,8 @@ export const BUILDER = {
 export const LINKS = {
   talk: "https://talk.nervos.org",
   talkDaos: "https://talk.nervos.org/c/daos-funding",
-  sparkBoard: "https://talk.nervos.org/c/eco-fund/spark",
+  sparkBoard: "https://talk.nervos.org/c/daos-funding/spark-program",
+  sparkRules: "https://talk.nervos.org/t/spark-program-mini-grant-initiative/8752",
   ccc: "https://github.com/ckb-devrel/ccc",
   cccDocs: "https://docs.nervos.org/docs/sdk-and-devtool/ccc",
   didWip: "https://github.com/web5fans/web5-wips/blob/master/01.md",
@@ -21,7 +22,8 @@ export const LINKS = {
     "https://talk.nervos.org/t/dao-v1-1-web5-identity-layer-community-led-review/10124",
   demo: "https://talkdid-ckb-j9kz.vercel.app/",
   repo: "https://github.com/panagot/talkdid-ckb",
-  pluginRepo: "https://github.com/panagot/talkdid-discourse-plugin",
+  /** Local stub lives in this kit until a separate plugin repo is published */
+  pluginRepo: "https://github.com/panagot/talkdid-ckb/tree/master/plugin",
   staging: "", // filled when staging Discourse is live
 };
 
@@ -29,7 +31,7 @@ export const PROPOSAL = {
   title: "TalkDID — Link did:ckb to Nervos Talk",
   oneLiner:
     "A Discourse plugin that binds Nervos Talk accounts to did:ckb identities — verified badges where the CKB community already posts.",
-  amountAsk: "$1,000",
+  amountAsk: "$500",
   track: "Talk Spark · DAOs & Funding",
   problem:
     "Nervos Talk (Discourse) is the public hub for Infrastructure, Applications, and DAOs & Funding — including Spark itself. Accounts there are ordinary Discourse logins. Meanwhile did:ckb lives on-chain (WIP-01 cells) and is already used in DAO / Web5 surfaces (e.g. Metaforo). Contributors cannot prove the same identity on Talk; mods rely on screenshots and social trust.",
@@ -40,16 +42,14 @@ export const PROPOSAL = {
   committeeSignal:
     "On a prior Spark DID proposal, the committee suggested Discourse + CKB DID integration as a higher-adoption, ecosystem-aligned direction.",
   demoNote:
-    "This site includes a Live CCC path (real wallet sign + server verify + did:ckb resolve on public RPC). It does not modify production talk.nervos.org. The funded artifact remains the installable Discourse plugin + staging forum.",
-  zhSummary:
-    "TalkDID：将 Nervos Talk（Discourse）账号与 did:ckb 绑定。用户通过 CCC 签名验证钱包控制权，论坛资料与帖子显示已验证徽章。不改动生产站 talk.nervos.org；交付物为可安装的 Discourse 插件 + 评审用 staging。申请 $1,000，约 5 周，两个里程碑。",
+    "Live CCC here is a real wallet sign + server verify + did:ckb resolve on public RPC. It does not modify production talk.nervos.org. The real product is an installable Discourse plugin.",
 };
 
 export const MILESTONES = [
   {
     id: "m1",
     title: "M1 — Plugin scaffold & DID challenge",
-    amount: "$400",
+    amount: "$200",
     weeks: "Weeks 1–3",
     deliverables: [
       "Discourse plugin skeleton (Rails) with site settings + admin toggle",
@@ -62,16 +62,16 @@ export const MILESTONES = [
   },
   {
     id: "m2",
-    title: "M2 — Badge UI, staging, verify",
-    amount: "$600",
-    weeks: "Weeks 4–5",
+    title: "M2 — Badge UI + verify docs",
+    amount: "$300",
+    weeks: "Week 4",
     deliverables: [
       "Theme Component / plugin UI: badge on profile + post stream",
       "User unlink / re-link controls",
-      "Staging Discourse with plugin enabled (shareable URL)",
+      "Docker Dev install docs (reproducible verify without paid staging host)",
       "How-to-verify checklist + ≤60s GIF/WebM",
       "MIT license, CONTRIBUTING, issue templates",
-      "Spark update post linking demo, staging, and plugin repo",
+      "Spark update post linking demo, plugin repo, and verify steps",
     ],
   },
 ];
@@ -79,13 +79,13 @@ export const MILESTONES = [
 export const NON_OVERLAP = [
   {
     name: "Nervos Talk",
-    theirs: "Forum accounts, no on-chain bind",
-    ours: "Adds did:ckb badge on existing Talk users",
+    theirs: "Forum accounts today — no Discourse × did:ckb plugin exists yet",
+    ours: "Proposed: badge on existing Talk users via installable plugin",
   },
   {
     name: "Vellum / did-ckb SDK",
     theirs: "Create / resolve / history for DID cells",
-    ours: "Consumes resolve patterns; no minting UX rebuild",
+    ours: "Would consume resolve patterns; no minting UX rebuild",
   },
   {
     name: "bbs.fans / xjdao",
@@ -119,7 +119,7 @@ export const TALK_SURFACE = [
   },
   {
     name: "DAOs & Funding",
-    blurb: "Spark / Eco Fund threads — where this proposal is evaluated.",
+    blurb: "Community funding threads — where identity trust matters.",
   },
   {
     name: "Announcements & Meta",
@@ -180,13 +180,13 @@ export const COMPARE_ROWS = [
     newForum: "Competes for attention",
   },
   {
-    axis: "Spark fit",
+    axis: "Delivery shape",
     talkdid: "App-layer · Talk-native · OSS",
     walletOnly: "Often infra-heavy",
     newForum: "High adoption risk",
   },
   {
-    axis: "Scope for ~$1k",
+    axis: "Scope",
     talkdid: "Plugin + Theme Component + staging",
     walletOnly: "Easy to overscope",
     newForum: "Too large",
@@ -290,15 +290,15 @@ export const VERIFY_STEPS = [
     time: "instant",
   },
   {
-    title: "Check plugin stub + non-overlap",
-    body: "Plugin repo is the funded artifact path. Confirm TalkDID ≠ Vellum mint UX ≠ Metaforo DAO login ≠ bbs.fans.",
-    href: "/ecosystem",
-    time: "~2 min",
+    title: "Open Talk preview",
+    body: "See how badges would look on a Discourse UI like talk.nervos.org. Toggle Preview as linked.",
+    href: "/demo",
+    time: "~1 min",
   },
   {
-    title: "Read M1/M2 exits @ $1,000",
-    body: "M1 plugin+verify; M2 badge+staging+GIF. Staging Discourse URL lands in M2 — production Talk install is not claimed.",
-    href: "/submit",
+    title: "Check non-overlap",
+    body: "TalkDID is for Nervos Talk — not Vellum mint UX, Metaforo DAO login, or bbs.fans.",
+    href: "/ecosystem",
     time: "~2 min",
   },
 ];
@@ -309,7 +309,7 @@ export const VERIFY_CHECKS = VERIFY_STEPS;
 export const FAQ = [
   {
     q: "Does this change talk.nervos.org immediately?",
-    a: "No. Production install needs Talk admins. Spark funds the plugin + a staging Discourse reviewers can use.",
+    a: "No. Production install needs Talk admins. A staging Discourse is how the plugin would be demonstrated before any production install.",
   },
   {
     q: "Is this the same as DAO Web5 / Metaforo login?",
@@ -320,8 +320,8 @@ export const FAQ = [
     a: "Badges need a trusted server check. A Theme Component can render UI; the Rails plugin owns nonce issue, verify, and storage so clients cannot forge a bind.",
   },
   {
-    q: "Is the Vite kit the deliverable?",
-    a: "No. It is the proposal companion + Live CCC crypto path. The funded artifact is the Discourse plugin repo + staging forum.",
+    q: "Is this website the Discourse plugin?",
+    a: "No. This is a public demo of the link flow. The plugin is a separate Rails package (see the plugin/ stub in the repo).",
   },
   {
     q: "Which wallets?",
@@ -329,7 +329,7 @@ export const FAQ = [
   },
   {
     q: "Mainnet or testnet?",
-    a: "Develop and demo on testnet; mainnet DID binding behind a site setting once vectors are solid.",
+    a: "Prefer testnet for demos; mainnet DID binding would sit behind a site setting once vectors are solid.",
   },
 ];
 
@@ -371,11 +371,10 @@ export const SUBMIT_FIELDS = {
       `${m.title} (${m.amount}, ${m.weeks})\n` +
       m.deliverables.map((d) => `• ${d}`).join("\n"),
   ).join("\n\n"),
-  budget: `${PROPOSAL.amountAsk} total — M1 $400 / M2 $600. Disbursement follows Spark 20% / 80%.`,
+  budget: `${PROPOSAL.amountAsk} total — M1 $200 / M2 $300. Disbursement follows Spark 20% / 80%.`,
   team: `${BUILDER.label}. ${BUILDER.note}`,
-  links: `Demo: ${LINKS.demo} · Kit repo: ${LINKS.repo} · Plugin stub: ${LINKS.pluginRepo} · Talk: ${LINKS.talk} · WIP-01: ${LINKS.didWip} · Committee redirect: ${LINKS.sparkDidFeedback}`,
+  links: `Demo: ${LINKS.demo} · Kit repo: ${LINKS.repo} · Plugin stub: ${LINKS.pluginRepo} · Submit category: ${LINKS.sparkBoard} · Talk: ${LINKS.talk} · WIP-01: ${LINKS.didWip} · Committee redirect: ${LINKS.sparkDidFeedback}`,
   whyNervos: `${PROPOSAL.whySpark}\n\nSignal: ${PROPOSAL.committeeSignal}`,
-  zhSummary: PROPOSAL.zhSummary,
   nonOverlap: NON_OVERLAP.map(
     (r) => `${r.name}\n  Existing: ${r.theirs}\n  TalkDID: ${r.ours}`,
   ).join("\n\n"),

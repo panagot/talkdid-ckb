@@ -1,10 +1,5 @@
 import { Link } from "wouter";
-import {
-  ECOSYSTEM,
-  LINKS,
-  PROPOSAL,
-  TALK_SURFACE,
-} from "../data/grant.js";
+import { ECOSYSTEM, LINKS, TALK_SURFACE } from "../data/grant.js";
 
 export default function Ecosystem() {
   return (
@@ -14,25 +9,12 @@ export default function Ecosystem() {
         <h1>Where TalkDID sits</h1>
         <p className="lede">
           Nervos Talk is a public Discourse forum with deep categories —
-          Infrastructure, Applications, DAOs & Funding (Spark), and more. Identity
-          on Talk today is a Discourse account. On-chain identity is{" "}
+          Infrastructure, Applications, DAOs & Funding, and more. Identity on
+          Talk today is a Discourse account. On-chain identity is{" "}
           <em>did:ckb</em>. TalkDID is the bridge — not a second forum and not a
           DAO login rewrite.
         </p>
       </header>
-
-      <div className="callout signal-callout">
-        <h3>Committee signal</h3>
-        <p>{PROPOSAL.committeeSignal}</p>
-        <a
-          className="text-link"
-          href={LINKS.sparkDidFeedback}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Read the Spark thread →
-        </a>
-      </div>
 
       <section className="section">
         <div className="section-head">
@@ -113,7 +95,7 @@ export default function Ecosystem() {
       <div className="cta-band">
         <div>
           <h2>See the bind flow</h2>
-          <p className="muted">Mock only — safe for reviewers.</p>
+          <p className="muted">Live CCC + Talk preview on this demo site.</p>
         </div>
         <Link href="/demo" className="btn btn-primary">
           Open demo

@@ -13,16 +13,13 @@ import HelpFab from "./HelpFab.jsx";
 const NAV_PRIMARY = [
   { href: "/demo", label: "Demo" },
   { href: "/how", label: "How" },
-  { href: "/reviewers", label: "Reviewers" },
-  { href: "/submit", label: "Submit" },
+  { href: "/architecture", label: "Architecture" },
+  { href: "/ecosystem", label: "Ecosystem" },
 ];
 
 const NAV_MORE = [
-  { href: "/ecosystem", label: "Ecosystem" },
-  { href: "/architecture", label: "Architecture" },
   { href: "/compare", label: "Compare" },
   { href: "/verify", label: "Verify" },
-  { href: "/method", label: "Method" },
   { href: "/risks", label: "Risks" },
 ];
 
@@ -174,22 +171,19 @@ export default function Shell({ children }) {
             <p className="muted">{PROPOSAL.oneLiner}</p>
           </div>
           <div>
-            <p className="footer-label">Kit</p>
+            <p className="footer-label">Product</p>
             <ul>
               <li>
-                <Link href="/demo">Interactive demo</Link>
-              </li>
-              <li>
-                <Link href="/verify">How to verify</Link>
-              </li>
-              <li>
-                <Link href="/submit">Spark submit kit</Link>
+                <Link href="/demo">Demo</Link>
               </li>
               <li>
                 <Link href="/how">How it works</Link>
               </li>
               <li>
-                <Link href="/method">Build method</Link>
+                <Link href="/architecture">Architecture</Link>
+              </li>
+              <li>
+                <Link href="/verify">How to verify</Link>
               </li>
             </ul>
           </div>
@@ -212,9 +206,7 @@ export default function Shell({ children }) {
                 </a>
               </li>
               <li>
-                <a href={LINKS.sparkBoard} target="_blank" rel="noreferrer">
-                  Talk Spark
-                </a>
+                <Link href="/ecosystem">Ecosystem map</Link>
               </li>
             </ul>
           </div>
@@ -222,34 +214,26 @@ export default function Shell({ children }) {
             <p className="footer-label">Project</p>
             <ul>
               <li>
-                <a href={LINKS.demo} target="_blank" rel="noreferrer">
-                  Live demo
-                </a>
-              </li>
-              <li>
                 <a href={LINKS.repo} target="_blank" rel="noreferrer">
-                  Kit repo
+                  GitHub
                 </a>
               </li>
               <li>
                 <a href={LINKS.pluginRepo} target="_blank" rel="noreferrer">
-                  Plugin stub
+                  Plugin source
                 </a>
               </li>
               <li>License · MIT</li>
               <li>
-                <Link href="/risks">Risks & mitigations</Link>
+                <Link href="/risks">Risks</Link>
               </li>
             </ul>
           </div>
         </div>
         <div className="footer-bar">
           <span>
-            Independent Spark proposal kit · not affiliated with Nervos Foundation
-            or CKB Eco Fund
-          </span>
-          <span>
-            Ask {PROPOSAL.amountAsk} · {PROPOSAL.track}
+            Independent demo · not affiliated with Nervos Foundation or CKB Eco
+            Fund · not installed on production Talk
           </span>
         </div>
       </footer>

@@ -14,6 +14,12 @@ function validUsername(name) {
   return /^[a-zA-Z0-9._-]{2,20}$/.test(name);
 }
 
+function networkFromClient(client) {
+  const url = String(client?.url || client?.addressPrefix || "");
+  if (/mainnet/i.test(url) || url.includes("ckb1")) return "mainnet";
+  return "testnet";
+}
+
 export default function LiveLink() {
   const { open, disconnect, wallet, signerInfo, client } = ccc.useCcc();
   const signer = ccc.useSigner();
@@ -53,11 +59,17 @@ export default function LiveLink() {
       .catch(() => setAddress(""));
   }, [signerInfo]);
 
+  // Keep challenge network aligned with the CCC client (modal can also switch).
   useEffect(() => {
-    const name = client?.url?.includes("mainnet") || network === "mainnet";
-    // Prefer explicit toggle; client may already match CCC picker.
-    void name;
-  }, [client, network]);
+    if (!client) return;
+    const next = networkFromClient(client);
+    setNetwork((prev) => {
+      if (prev === next) return prev;
+      setChallenge(null);
+      setBind(null);
+      return next;
+    });
+  }, [client]);
 
   async function onRequestChallenge() {
     setError("");
@@ -162,12 +174,12 @@ export default function LiveLink() {
         </ol>
 
         <div className="live-row">
-          <label htmlFor="net">Network</label>
+          <label htmlFor="net">Network (for challenge)</label>
           <select
             id="net"
             value={network}
             onChange={(e) => {
-              setNetwork(e.target.value);
+              setNetwork(e.target.value === "mainnet" ? "mainnet" : "testnet");
               setChallenge(null);
               setBind(null);
             }}
@@ -175,6 +187,9 @@ export default function LiveLink() {
             <option value="testnet">CKB Testnet (recommended)</option>
             <option value="mainnet">CKB Mainnet</option>
           </select>
+          <p className="muted" style={{ margin: "0.35rem 0 0", fontSize: "0.8rem" }}>
+            Match this to the network you pick in the CCC wallet modal.
+          </p>
         </div>
 
         <div className="live-row">
@@ -313,7 +328,7 @@ export default function LiveLink() {
             <li className={bind?.did ? "done" : ""}>DID resolved</li>
           </ul>
           <p className="forum-caption">
-            Staging only — not installed on production talk.nervos.org. Prefer
+            Demo kit only — not installed on production talk.nervos.org. Prefer
             testnet. No DID cell still proves wallet control.
           </p>
         </div>

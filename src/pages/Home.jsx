@@ -7,7 +7,7 @@ import {
   UserCircle,
   ChatsCircle,
 } from "@phosphor-icons/react";
-import { MILESTONES, NON_OVERLAP, PROPOSAL } from "../data/grant.js";
+import { NON_OVERLAP, PROPOSAL } from "../data/grant.js";
 
 const fade = {
   initial: { opacity: 0, y: 18 },
@@ -19,21 +19,21 @@ const POSTS = [
   {
     user: "newcomer",
     badge: false,
-    topic: "First Spark proposal — feedback welcome",
-    meta: "Spark Program · 2h",
+    topic: "First post — feedback welcome",
+    meta: "General · 2h",
   },
   {
     user: "talk-builder",
     badge: true,
     did: "did:ckb:…a7f3",
-    topic: "TalkDID staging checklist for reviewers",
+    topic: "Fiber node notes from last week",
     meta: "Infrastructure · 5h",
   },
   {
     user: "mod-anna",
     badge: true,
     did: "did:ckb:…91c2",
-    topic: "Weekly sync notes — funding & nodes",
+    topic: "Community sync — funding & nodes",
     meta: "DAOs & Funding · 1d",
   },
 ];
@@ -43,7 +43,7 @@ export default function Home() {
     <div className="page home">
       <section className="hero hero-stage">
         <motion.div className="hero-copy" {...fade}>
-          <p className="eyebrow">CKB Eco Fund · Spark</p>
+          <p className="eyebrow">Nervos Talk · did:ckb</p>
           <h1>
             TalkDID
             <span className="hero-sub">
@@ -58,8 +58,8 @@ export default function Home() {
             <Link href="/demo" className="btn btn-primary">
               Try the live demo <ArrowRight size={18} />
             </Link>
-            <Link href="/submit" className="btn btn-secondary">
-              Spark submit kit
+            <Link href="/how" className="btn btn-secondary">
+              How it works
             </Link>
           </div>
         </motion.div>
@@ -79,7 +79,7 @@ export default function Home() {
               </span>
               <span className="talk-url">talk.nervos.org</span>
               <span className="talk-live">
-                <ChatsCircle size={14} weight="fill" /> Live preview
+                <ChatsCircle size={14} weight="fill" /> Preview
               </span>
             </div>
 
@@ -126,19 +126,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="signal-strip">
-        <p className="signal-label">Committee signal</p>
-        <p>{PROPOSAL.committeeSignal}</p>
-        <div className="hero-cta signal-actions">
-          <Link href="/ecosystem" className="btn btn-ghost btn-sm">
-            Ecosystem map
-          </Link>
-          <Link href="/verify" className="btn btn-ghost btn-sm">
-            How to verify
-          </Link>
-        </div>
-      </section>
-
       <section className="section">
         <div className="section-head">
           <h2>Before → after</h2>
@@ -151,8 +138,8 @@ export default function Home() {
               <UserCircle size={22} /> Username only
             </h3>
             <p>
-              Spark threads, bug reports, and funding asks rely on social trust.
-              Anyone can mint a new Discourse account.
+              Forum accounts are ordinary Discourse logins. Anyone can create
+              one; mods rely on social trust.
             </p>
           </article>
           <div className="ba-arrow" aria-hidden="true">
@@ -173,9 +160,9 @@ export default function Home() {
 
       <section className="section">
         <div className="section-head">
-          <h2>Not another DID tutorial</h2>
+          <h2>Fits beside what already exists</h2>
           <p className="muted">
-            Same ecosystem pieces — different job on Talk itself.
+            did:ckb lives elsewhere today. TalkDID is for Nervos Talk itself.
           </p>
         </div>
         <div className="overlap-grid">
@@ -193,47 +180,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="section-head">
-          <h2>Scoped for Spark</h2>
-          <p className="muted">
-            {PROPOSAL.amountAsk} · two milestones · OSS Discourse plugin — not a
-            protocol rewrite.
-          </p>
-        </div>
-        <div className="mile-grid">
-          {MILESTONES.map((m) => (
-            <article key={m.id} className="mile-card">
-              <div className="mile-top">
-                <span className="mono">{m.id.toUpperCase()}</span>
-                <span className="amount">{m.amount}</span>
-              </div>
-              <h3>{m.title}</h3>
-              <p className="muted">{m.weeks}</p>
-              <ul>
-                {m.deliverables.slice(0, 4).map((d) => (
-                  <li key={d}>{d}</li>
-                ))}
-              </ul>
-              <Link href="/submit" className="text-link">
-                Full deliverables →
-              </Link>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="cta-band">
         <div>
-          <h2>Review the crypto path, then the paste kit</h2>
+          <h2>Try the crypto path</h2>
           <p className="muted">{PROPOSAL.demoNote}</p>
         </div>
         <div className="hero-cta">
           <Link href="/demo" className="btn btn-primary">
             Open demo
           </Link>
-          <Link href="/reviewers" className="btn btn-secondary">
-            Reviewer brief
+          <Link href="/architecture" className="btn btn-secondary">
+            Architecture
           </Link>
         </div>
       </section>

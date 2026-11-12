@@ -5,10 +5,11 @@
 Binds a Nervos Talk (Discourse) user to a `did:ckb` identity via CCC wallet
 signature verification, then exposes a verified badge through a Theme Component.
 
-> This folder is a **scaffold** for M1. Push to
-> [github.com/panagot/talkdid-discourse-plugin](https://github.com/panagot/talkdid-discourse-plugin)
-> when ready for reviewers. Production `talk.nervos.org` install is **out of
-> scope** until Talk admins opt in — M2 ships a **staging** Discourse instead.
+> This folder is a **scaffold** for M1 inside
+> [talkdid-ckb](https://github.com/panagot/talkdid-ckb/tree/master/plugin).
+> It may later move to its own repo. Production `talk.nervos.org` install is
+> **out of scope** until Talk admins opt in — M2 ships a **staging** Discourse
+> instead.
 
 ## Status
 
