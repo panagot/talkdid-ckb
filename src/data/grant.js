@@ -2,8 +2,8 @@
 
 /** Builder identity for Submit paste kit only — not shown in site chrome */
 export const BUILDER = {
-  label: "Independent builder",
-  note: "Contact details are provided on the Spark application post / Eco Fund form, not on this public kit.",
+  label: "Independent full-stack builder",
+  note: "12+ years in cryptocurrency. Contact details are provided on the Spark application post / Eco Fund form, not on this public kit.",
 };
 
 export const LINKS = {
@@ -49,7 +49,7 @@ export const MILESTONES = [
   {
     id: "m1",
     title: "M1 — Plugin scaffold & DID challenge",
-    amount: "$200",
+    amount: "$250",
     weeks: "Weeks 1–3",
     deliverables: [
       "Discourse plugin skeleton (Rails) with site settings + admin toggle",
@@ -63,7 +63,7 @@ export const MILESTONES = [
   {
     id: "m2",
     title: "M2 — Badge UI + verify docs",
-    amount: "$300",
+    amount: "$250",
     weeks: "Week 4",
     deliverables: [
       "Theme Component / plugin UI: badge on profile + post stream",
@@ -370,7 +370,7 @@ export const SUBMIT_FIELDS = {
       `${m.title} (${m.amount}, ${m.weeks})\n` +
       m.deliverables.map((d) => `• ${d}`).join("\n"),
   ).join("\n\n"),
-  budget: `${PROPOSAL.amountAsk} total — M1 $200 / M2 $300. Disbursement follows Spark 20% / 80%.`,
+  budget: `${PROPOSAL.amountAsk} total — M1 $250 / M2 $250. Disbursement follows Spark 20% / 80%.`,
   team: `${BUILDER.label}. ${BUILDER.note}`,
   links: `Demo: ${LINKS.demo} · Kit repo: ${LINKS.repo} · Plugin stub: ${LINKS.pluginRepo} · Submit category: ${LINKS.sparkBoard} · Talk: ${LINKS.talk} · WIP-01: ${LINKS.didWip} · Committee redirect: ${LINKS.sparkDidFeedback}`,
   whyNervos: `${PROPOSAL.whySpark}\n\nSignal: ${PROPOSAL.committeeSignal}`,

@@ -1,138 +1,103 @@
 # TalkDID
 
-**Bind `did:ckb` to Nervos Talk** — a Discourse plugin proposal for the CKB Eco Fund Spark track.
+Bind **did:ckb** identities to [Nervos Talk](https://talk.nervos.org) accounts.
 
-TalkDID makes CKB’s identity stack useful where the community already gathers: [talk.nervos.org](https://talk.nervos.org). Contributors prove wallet control with **CCC**, the plugin stores a `did:ckb` binding, and profiles show a verified badge mods can trust.
+TalkDID is an open-source **Discourse plugin** proposal for the CKB Eco Fund Spark track. Users connect a CKB wallet via CCC, sign a short challenge, and get a verified `did:ckb` badge on their Talk profile and posts — so mods can trust on-chain identity instead of screenshots.
 
-> This repository is the **Spark proposal companion** (product narrative + interactive mock + paste-ready form fields).  
-> The funded deliverable is an **open-source Discourse plugin**, not this Vite kit alone.
+**Live demo:** [talkdid-ckb-j9kz.vercel.app](https://talkdid-ckb-j9kz.vercel.app/)
 
 ---
 
-## Live demo
+## What this repo is
 
-**Production:** [https://talkdid-ckb-j9kz.vercel.app/](https://talkdid-ckb-j9kz.vercel.app/)
-
-| Audience | Deep link |
+| Piece | Role |
 | --- | --- |
-| **Spark reviewers** | [/#/reviewers](https://talkdid-ckb-j9kz.vercel.app/#/reviewers) |
-| **Interactive mock** | [/#/demo](https://talkdid-ckb-j9kz.vercel.app/#/demo) |
-| **Ecosystem map** | [/#/ecosystem](https://talkdid-ckb-j9kz.vercel.app/#/ecosystem) |
-| **How to verify** | [/#/verify](https://talkdid-ckb-j9kz.vercel.app/#/verify) |
-| **Submit paste kit** | [/#/submit](https://talkdid-ckb-j9kz.vercel.app/#/submit) |
-| **Risks** | [/#/risks](https://talkdid-ckb-j9kz.vercel.app/#/risks) |
+| **This site** (`src/`, `api/`) | Public proposal companion — product story, Live CCC demo, Talk UI preview |
+| **`plugin/`** | Scaffold for the installable Discourse plugin (funded deliverable) |
 
-**Repo (private):** [github.com/panagot/talkdid-ckb](https://github.com/panagot/talkdid-ckb)
+Production `talk.nervos.org` is **not** modified by this repo. A staging / Docker Dev Discourse is how the plugin is meant to be reviewed.
 
-Local:
+---
+
+## Quick start
 
 ```bash
 npm install
 npm run dev
 ```
 
-→ [http://localhost:5303](http://localhost:5303) (hash routes)
+Open [http://localhost:5303](http://localhost:5303).
 
 ```bash
 npm run build && npm run preview
 ```
 
+Optional (Vercel): set `TALKDID_CHALLENGE_SECRET` for production HMAC challenge tokens.
+
 ---
 
-## Why Spark / why Talk
+## Demo highlights
 
-| Constraint | How TalkDID fits |
+| Link | Purpose |
 | --- | --- |
-| App-layer, not protocol theater | Thin Discourse plugin + existing `did:ckb` / CCC |
-| Talk-native venue | Spark itself runs on Nervos Talk |
-| Small budget (typical Spark) | Two milestones, **$1,000** total, clear exits |
-| Reviewable OSS | MIT plugin stub + staging Discourse before prod Talk |
+| [/#/demo](https://talkdid-ckb-j9kz.vercel.app/#/demo) | Live CCC connect → challenge → sign → verify |
+| [/#/verify](https://talkdid-ckb-j9kz.vercel.app/#/verify) | What this demo proves (and what it does not) |
+| [/#/reviewers](https://talkdid-ckb-j9kz.vercel.app/#/reviewers) | Checklist for Spark / Eco Fund reviewers |
+| [/#/ecosystem](https://talkdid-ckb-j9kz.vercel.app/#/ecosystem) | Non-overlap with Metaforo, Vellum, bbs.fans |
 
-**Ask:** `$1,000` · **M1** `$400` · **M2** `$600` · **Track:** Talk Spark · DAOs & Funding
+**Live CCC path (demo):**
 
-**Plugin stub (funded artifact path):** [`plugin/`](./plugin/) on this repo
+1. Connect wallet via `@ckb-ccc/connector-react`
+2. `POST /api/challenge` — short-lived HMAC nonce
+3. Wallet signs the challenge
+4. `POST /api/verify` — signature check + optional `did:ckb` resolve on public RPC
+5. Ephemeral bind for the demo session
 
----
-
-## What reviewers get in this kit
-
-1. **Story** — problem, solution, Spark fit on Home / Compare  
-2. **Demo** — challenge → sign → badge mock (no real wallet required)  
-3. **Architecture** — trust boundary: Discourse session vs DID proof  
-4. **Method** — ~5-week plan pinned to boring Discourse patterns  
-5. **Submit** — copy blocks for Talk Spark / Eco Fund fields  
-6. **Risks** — install gate, DID edge cases, opt-in — with mitigations  
+Prefer **testnet**. Signature verify is enough for the demo; a DID cell is optional.
 
 ---
 
-## App map
+## Plugin (funded artifact)
 
-| Route | Purpose |
+See [`plugin/`](./plugin/) for the Discourse plugin stub and Docker Dev notes.
+
+Planned flow:
+
+1. Authenticated Talk user requests a challenge
+2. CCC signs → server verifies → resolves `did:ckb`
+3. Bind stored on `UserCustomField`
+4. Theme Component shows badge on profile / posts
+
+**Out of scope until Talk admins opt in:** production install on talk.nervos.org.
+
+---
+
+## Spark ask (summary)
+
+| | |
 | --- | --- |
-| `/` | Hero, committee signal, milestones, stack |
-| `/how` | End-user link flow |
-| `/demo` | Link flow · post stream · mod view |
-| `/ecosystem` | Talk categories + non-overlap map |
-| `/architecture` | Plugin + Theme Component + did:ckb |
-| `/compare` | TalkDID vs wallet-only vs new forum |
-| `/verify` | Honest claims + FAQ |
-| `/reviewers` | Evaluation checklist |
-| `/method` | Principles + week sketch |
-| `/submit` | Paste-ready proposal fields |
-| `/risks` | Risks & mitigations |
+| **Ask** | $500 (CKB equivalent) |
+| **Disbursement** | Spark 20% / 80% |
+| **M1** | $250 — plugin scaffold, challenge/sign/verify, tests, Docker Dev README |
+| **M2** | $250 — badge UI, unlink/re-link, verify GIF + checklist, update post |
+
+Proposal drafts live under [`docs/`](./docs/).
+
+Committee signal for Discourse × CKB DID:  
+[talk.nervos.org/t/…/10435/6](https://talk.nervos.org/t/spark-program-did-quickstart-kit-practical-did-consumption-demo/10435/6)
 
 ---
 
-## Live CCC path
+## Stack
 
-Demo → **Live CCC** tab:
+**Demo kit:** Vite · React · wouter (hash routes) · CCC · Vercel serverless `/api/*`
 
-1. Connect a wallet via **@ckb-ccc/connector-react** (Neuron, JoyID, …)
-2. `POST /api/challenge` — HMAC-signed nonce (server)
-3. Wallet `signMessage` on that challenge
-4. `POST /api/verify` — `Signer.verifyMessage` + `listDidCkbsByLock` on public CKB RPC
-5. Ephemeral bind store (`/api/binds`) for the demo session
-
-Prefer **testnet**. Mainnet works the same once you select it. Creating a `did:ckb` cell (if you have none) still uses ecosystem DID tooling — this kit proves wallet ownership even without a DID cell.
-
-Env (optional on Vercel): `TALKDID_CHALLENGE_SECRET` for production HMAC keys.
-
-```bash
-npm run dev   # Vite + /api middleware
-```
-
-## Stack (this site)
-
-- Vite 8 · React 19 · wouter (hash) · Phosphor · Framer Motion · CCC  
-- API: Vercel serverless `/api/*` (+ Vite middleware in local dev)  
-- Deploy: Vercel (`vercel.json` SPA rewrite; hash routing needs no server routes)
-
-## Stack (funded plugin)
-
-- Discourse plugin (Rails) · CCC wallet signing · `did:ckb` verify · UserCustomField storage · optional Fiber tip URL (stretch)
-
----
-
-## Milestones (summary)
-
-**M1 — Plugin scaffold & DID challenge** ($400, weeks 1–3)  
-Plugin skeleton, nonce challenge, CCC sign verify, rate limits, tests, public plugin repo + Docker Dev README.
-
-**M2 — Badge UI, staging, verify** ($600, weeks 4–5)  
-Verified badge on profile/posts, unlink/re-link, staging Discourse URL, ≤60s verify GIF, MIT + Spark update post.
-
-Full acceptance lists live in-app under **Submit** and **Reviewers**.
-
----
-
-## Contact
-
-Builder contact is provided on the Spark / Eco Fund application form — not in this public kit chrome. Repo maintainers: see GitHub.
+**Plugin (planned):** Discourse (Rails) plugin + Theme Component · CCC · `@ckb-ccc/did-ckb` patterns · `UserCustomField`
 
 ---
 
 ## License
 
-MIT — proposal kit. The Discourse plugin will ship MIT under the funded repository.
+MIT
 
-*Independent Spark proposal material. Not affiliated with the Nervos Foundation or CKB Eco Fund.*
+Independent Spark proposal material. Not affiliated with the Nervos Foundation or CKB Eco Fund.

@@ -1,0 +1,113 @@
+# Spark Program | TalkDID — Bind did:ckb to Nervos Talk
+
+**Thread:** https://talk.nervos.org/t/spark-program-talkdid-bind-did-ckb-to-nervos-talk/11206  
+**Tag:** `Spark-Program`  
+**Template:** https://talk.nervos.org/t/spark-program-mini-grant-initiative/8752/7  
+
+> **Copy from:** `docs/SPARK_REPLY_PASTE.txt` (open that file → Select All → Copy).  
+> Do **not** copy from Cursor’s Markdown preview — it escapes `*` and `#`.  
+> Paste as a reply on the existing thread. Replace `DISCORD_HANDLE` before posting.
+
+---
+
+Thanks @ding99bt @xingtianchunyan — the first post was too short. Links work for me now. Full proposal per the Spark template:
+
+---
+
+## 1. Project Overview
+
+**Name:** TalkDID  
+**One-liner:** Discourse plugin that binds Nervos Talk accounts to `did:ckb` and shows a verified badge on profiles/posts.  
+**Type:** OSS Discourse plugin (app-layer)  
+**Demo:** https://talkdid-ckb-j9kz.vercel.app/  
+**Repo:** https://github.com/panagot/talkdid-ckb  
+
+---
+
+## 2. Team
+
+Independent full-stack builder: **Panagiotis Pollis** (`PANAGOT` / `panagot`)  
+12+ years in cryptocurrency (wallets, on-chain apps, ecosystem tooling).  
+GitHub: https://github.com/panagot · Telegram: PANAGOT  
+
+---
+
+## 3. Background
+
+Nervos Talk is where Spark and ecosystem debate happen, but accounts are ordinary Discourse logins. `did:ckb` already exists elsewhere (Metaforo/DAO, bbs.fans, Vellum tooling). On Talk, wallet/DID claims still rely on screenshots and social trust.
+
+Committee previously redirected a DID Spark ask toward **Discourse × CKB DID**. TalkDID is that direction.
+
+---
+
+## 4. Solution
+
+Plugin + Theme Component:
+
+1. User connects CCC → signs a short nonce  
+2. Server verifies + resolves `did:ckb`  
+3. Bind stored on `UserCustomField`  
+4. Badge on profile/posts; unlink/re-link supported  
+
+**Non-goals:** production Talk install without admin approval; DAO votes; Fiber tips; another DID tutorial.  
+**Not rebuilding:** Vellum / did-ckb SDK (we consume); Metaforo/bbs.fans (other apps).
+
+---
+
+## 5. Technical Approach
+
+Discourse plugin (Ruby) + Theme Component + CCC / `@ckb-ccc/did-ckb`.  
+Trust boundary: Discourse session ≠ DID proof.  
+Verify via Docker Dev Discourse (no need to install on talk.nervos.org to review).
+
+---
+
+## 6. Plan (2 weeks)
+
+| Week | Work |
+| --- | --- |
+| **1 (M1)** | Plugin scaffold, challenge/sign/verify, UserCustomField, tests, Docker Dev README |
+| **2 (M2)** | Badge UI, unlink/re-link, ≤60s GIF + checklist, MIT, Spark update post |
+
+---
+
+## 7. Funding
+
+**Ask: $500** · Spark 20%/80%
+
+| Milestone | Amount |
+| --- | --- |
+| M1 — plugin + verify + tests + Docker Dev docs | $250 |
+| M2 — badge + verify pack + update post | $250 |
+
+---
+
+## 8. Deliverables + Verify
+
+**Ship:** MIT plugin + Theme Component · Docker Dev README · tests · verify GIF/checklist · Spark update post  
+
+**Verify (no deep code review):**
+
+1. Open demo: https://talkdid-ckb-j9kz.vercel.app/#/demo  
+2. Clone repo → Docker Dev README → link test user → see badge  
+3. Confirm non-goals in README  
+
+---
+
+## 9. Current vs funded
+
+**Now:** live companion kit + plugin stub.  
+**Spark funds:** real challenge/verify/bind, badge UI, reproducible Docker Dev verify pack.  
+The Vite kit is the proposal companion; the funded artifact is the installable plugin.
+
+---
+
+## 10. CKB alignment
+
+Uses `did:ckb` + CCC on Nervos Talk (Spark’s own venue). App-layer adoption, not a new protocol feature.
+
+---
+
+Happy to refine milestones if the committee prefers a different split. Demo/repo/plugin links can be updated in a follow-up reply as the public repo and screenshots are finalized.
+
+— PANAGOT

@@ -14,8 +14,8 @@
 
 **Ask: $500** (CKB equiv.) · Spark 20%/80%
 
-- **M1 $200** (week 1): plugin scaffold, challenge/sign/verify, UserCustomField, tests, public repo + Docker Dev README  
-- **M2 $300** (week 2): badge UI, unlink/re-link, verify GIF + checklist, MIT, Spark update post  
+- **M1 $250** (week 1): plugin scaffold, challenge/sign/verify, UserCustomField, tests, public repo + Docker Dev README  
+- **M2 $250** (week 2): badge UI, unlink/re-link, verify GIF + checklist, MIT, Spark update post  
 
 **How to verify:**
 
